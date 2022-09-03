@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<!-- saved from url=(0139)https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/04-create-dax-calculations-in-power-bi-desktop.html -->
+<html lang="zh-CN" class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>PL-300-Microsoft-Power-BI-数据分析器</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="./04-create-dax-calculations-in-power-bi-desktop_files/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="./04-create-dax-calculations-in-power-bi-desktop_files/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="./04-create-dax-calculations-in-power-bi-desktop_files/vs.min.css">
+        <script src="./04-create-dax-calculations-in-power-bi-desktop_files/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <link rel="stylesheet" href="./04-create-dax-calculations-in-power-bi-desktop_files/style.css">
+    <link type="text/css" rel="stylesheet" charset="UTF-8" href="./04-create-dax-calculations-in-power-bi-desktop_files/translateelement.css"></head>
+    <body data-spy="scroll" data-target="#linksMenu">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <div class="container d-flex justify-content-between">
+            <a class="my-1 title text-white" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst">
+                <img src="./04-create-dax-calculations-in-power-bi-desktop_files/Microsoft-logo_rgb_c-wht.png" alt="微软徽标" style="width:138px;height:61px;">
+            </a>
+            <span class="my-1 title text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">微软官方课件</font></font></span>
+            <a href="https://github.com/MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst" target="_blank" class="btn btn-sm btn-outline-secondary text-light">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <span class="ml-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GitHub</font></font></span>
+            </a>
+        </div>
+        <!--
+        <div class="container d-flex justify-content-between">
+            <a class="my-1 title text-azure text-uppercase" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst">
+                PL-300-Microsoft-Power-BI-Data-Analyst
+            </a>
+            <a href="https://github.com/MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst" target="_blank" class="btn btn-sm btn-outline-secondary text-light">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <span class="ml-2">GitHub</span>
+            </a>
+        </div>
+        -->
+    </nav>
+    <div class="container">
+        <main class="row extra-padding">
+            <aside class="col-sm-2">       
+                <nav id="linksMenu" class="toc sticky-top">
+                    <ul class="nav navbar-nav flex-column">
+                    <li class="nav-item"><a class="nav-link" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/04-create-dax-calculations-in-power-bi-desktop.html#exercise-1-create-calculated-tables"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 1：创建计算表</font></font></a></li><li class="nav-item"><a class="nav-link" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/04-create-dax-calculations-in-power-bi-desktop.html#exercise-2-create-measures"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 2：创建度量</font></font></a></li></ul>
+                </nav>         
+            </aside>
+            <hr class="">
+            <article class="col-sm-10 mb-5">
+                <h1 id="create-dax-calculations-in-power-bi-desktop-part-1"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 1 部分</font></font></strong></h1>
+
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">完成实验的预计时间为 45 分钟</font></font></strong></p>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本实验中，您将使用数据分析表达式 (DAX) 创建计算表、计算列和简单度量。</font></font></p>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本实验中，您将学习如何：</font></font></p>
+
+<ul>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建计算表</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建计算列</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建度量</font></font></p>
+  </li>
+</ul>
+
+<h3 id="lab-story"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室故事</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该实验室是一系列实验室中的众多实验室之一，这些实验室被设计成一个完整的故事，从数据准备到发布为报告和仪表板。</font><font style="vertical-align: inherit;">您可以按任何顺序完成实验。</font><font style="vertical-align: inherit;">但是，如果您打算通过多个实验室工作，我们建议您按以下顺序进行：</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中准备数据</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中加载数据</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Power BI Desktop 中的模型数据</font></font></p>
+  </li>
+  <li>
+    <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 1 部分</font></font></strong></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 2 部分</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中设计报表，第 1 部分</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中设计报表，第 2 部分</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建 Power BI 仪表板</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中执行数据分析</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实施行级安全</font></font></p>
+  </li>
+</ol>
+
+<h2 id="exercise-1-create-calculated-tables"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 1：创建计算表</font></font></strong></h2>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本练习中，您将创建两个计算表。</font><font style="vertical-align: inherit;">第一个是</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Salesperson表，以允许它与</font></font></strong><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表</font><font style="vertical-align: inherit;">之间存在直接关系。</font><font style="vertical-align: inherit;">第二个是</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日期</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表。</font></font></p>
+
+<h3 id="task-1-get-started"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 1：开始</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将为实验室设置环境。</font></font></p>
+
+<p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重要提示：如果您从上一个实验继续（并且您成功完成了该实验），请不要完成此任务；</font><font style="vertical-align: inherit;">相反，从下一个任务继续。</font></font></em></p>
+
+<ol>
+  <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">若要打开 Power BI Desktop，请在任务栏上单击 Microsoft Power BI Desktop 快捷方式。</font></font></li>
+</ol>
+
+ 	<a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image1.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image1.png" alt="图 50"></a>
+
+<ol>
+  <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要关闭入门窗口，请单击窗口左上角的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+</ol>
+
+ 	<a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image2.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image2.png" alt="图 49"></a>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">若要打开初始 Power BI Desktop 文件，请单击“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”功能区选项卡以打开后台视图。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">打开报告</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+</ol>
+
+ 	<a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image3.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image3.png" alt="图 48"></a>
+
+<ol>
+  <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">浏览报告</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+</ol>
+
+ 	<a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image4.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image4.png" alt="图 47"></a>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">打开</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗口中，导航到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">D:\PL300\Labs\04-create-dax-calculations-in-power-bi-desktop\Starter</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件夹。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售分析</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">打开</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+</ol>
+
+ 	<a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image5.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image5.png" alt="图 35"></a>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">关闭所有可能打开的信息窗口。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要创建文件的副本，请单击“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”功能区选项卡以打开后台视图。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">另存为</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+</ol>
+
+ 	<a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image6.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image6.png" alt="图 34"></a>
+
+<ol>
+  <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果提示应用更改，请单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">应用</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+</ol>
+
+ 	<a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image7.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image7.png" alt="图 25"></a>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">另存为</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗口中，导航到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">D:\PL300\MySolution</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件夹。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">保存</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image8.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image8.png" alt="图 13"></a></p>
+  </li>
+</ol>
+
+<h3 id="task-2-create-the-salesperson-table"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 2：创建销售人员表</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将创建</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Salesperson表（与</font></font></strong><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">的直接关系</font><font style="vertical-align: inherit;">）。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 的报表视图中，在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">建模</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”功能区的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">计算</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”组中，单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">“新建表”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image9.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image9.png" alt="图片1"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在编辑栏（在创建或编辑计算时直接在功能区下方打开）中，键入</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Salesperson =</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，按</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Shift+Enter</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，键入</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">'Salesperson (Performance)'</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，然后按</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Enter</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image10.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image10.png" alt="图4"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">为方便起见，本实验室中的所有 DAX 定义都可以从位于</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">D:\PL300\Labs\04-create-dax-calculations-in-power-bi-desktop\Assets\Snippets.txt</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">的片段文件中复制。</font></font></em></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通过首先输入表名称、后跟等号 (=) 和返回表的 DAX 公式来创建计算表。</font><font style="vertical-align: inherit;">请注意，表名不能已经存在于数据模型中。</font></font></em></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">公式栏支持输入有效的 DAX 公式。</font><font style="vertical-align: inherit;">它包括自动完成、智能感知和颜色编码等功能，使您能够快速准确地输入公式。</font></font></em></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">此表定义创建了</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售人员（绩效）</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表的副本。</font><font style="vertical-align: inherit;">它仅复制数据，但不复制可见性、格式等模型属性。</font></font></em></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提示：我们鼓励您输入“空白”（即回车和制表符）以直观且易于阅读的格式布局公式——尤其是当公式又长又复杂时。</font><font style="vertical-align: inherit;">要输入回车，请按</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Shift+Enter</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">“空白”是可选的。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，请注意表格图标为蓝色阴影（表示计算表）。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image11.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image11.png" alt="图 10"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">计算表是使用返回表的 DAX 公式定义的。</font><font style="vertical-align: inherit;">重要的是要了解计算表会增加数据模型的大小，因为它们会具体化和存储值。</font><font style="vertical-align: inherit;">每当刷新公式依赖项时都会重新计算它们，当新（未来）日期值加载到表中时，此数据模型也是如此。</font></font></em></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">与 Power Query 源表不同，计算表不能用于从外部数据源加载数据。</font><font style="vertical-align: inherit;">他们只能根据已经加载到数据模型中的内容来转换数据。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">切换到模型视图。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请注意，</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Salesperson</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表是可用的（注意，它可能从视图中隐藏，在这种情况下水平滚动以找到它）。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">从销售人员创建关系</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">| </font></font></strong><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales | </font></font></strong><font style="vertical-align: inherit;"><strong><font style="vertical-align: inherit;">EmployeeKey</font></strong><font style="vertical-align: inherit;">列 </font><strong><font style="vertical-align: inherit;">EmployeeKey</font></strong><font style="vertical-align: inherit;">列。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">右键单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Salesperson (Performance)</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表之间的非活动关系，然后选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Delete</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image12.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image12.png" alt="图二"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">当提示确认删除时，单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">OK</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image13.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image13.png" alt="图三"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Salesperson</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表中，多选以下列，然后隐藏它们（将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Is Hidden</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">属性设置为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Yes</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">员工ID</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">员工密钥</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">UPN</font></font></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在模型图中，选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Salesperson</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">属性</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗格的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">描述</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”框中，输入：</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Salesperson related to Sales</font></font></strong></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您可能还记得</font><font style="vertical-align: inherit;">当用户将光标悬停在表格或字段上时，描述在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”窗格中显示为工具提示。</font></font></strong><font style="vertical-align: inherit;"></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">对于</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Salesperson (Performance)</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表，将描述设置为：</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Salesperson related to region(s)</font></font></strong></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">现在，数据模型在分析销售人员时提供了两种选择。</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售人员</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表允许分析销售人员所做的销售，而</font><font style="vertical-align: inherit;">销售</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">人员（绩效）</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表允许分析分配给销售人员的销售区域中的销售情况。</font></font></em></p>
+  </li>
+</ol>
+
+<h3 id="task-3-create-the-date-table"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 3：创建日期表</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将创建</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日期</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">切换到数据视图。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image14.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image14.png" alt="图 29"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">主页”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">功能区选项卡上的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">计算</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”组内，单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">“新建表”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image15.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image15.png" alt="图5"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在编辑栏中，输入以下内容：</font></font></p>
+
+    <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">达克斯</font></font></strong></p>
+
+    <div class="code-header mt-3 mb-0 bg-light d-flex justify-content-between border"><span class="mx-2 text-muted text-capitalize font-weight-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">代码</font></font></span><button class="m-0 btn btn-code btn-sm btn-light codeBtn rounded-0 border-left text-muted font-weight-light" data-clipboard-target="#codeBlock0" type="button"><i class="fa fa-files-o mr-2" aria-hidden="true"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">复制</font></font></button></div><pre id="codeBlock0" class="mt-0"><code class="hljs javascript"> <span class="hljs-built_in"><span class="hljs-built_in">Date</span></span> =  <font></font>
+ CALENDARAUTO(<span class="hljs-number"><span class="hljs-number">6</span></span>)
+</code></pre>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image16.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image16.png" alt="图 6"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CALENDARAUTO() 函数返回一个由日期值组成的单列表。</font><font style="vertical-align: inherit;">“自动”行为扫描所有数据模型日期列以确定存储在数据模型中的最早和最新日期值。</font><font style="vertical-align: inherit;">然后，它为该范围内的每个日期创建一行，沿任一方向扩展范围以确保存储整年的数据。</font></font></em></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">此函数可以采用单个可选参数，即一年的最后一个月数。</font><font style="vertical-align: inherit;">省略时，值为 12，表示 12 月是一年中的最后一个月。</font><font style="vertical-align: inherit;">在本例中，输入 6，表示六月是一年中的最后一个月。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">注意日期值列。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image17.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image17.png" alt="图 7"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">显示的日期使用美国区域设置（即 mm/dd/yyyy）进行格式化。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在左下角，在状态栏中，注意表格统计，确认已经生成了1826行数据，代表了整整5年的数据。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image18.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image18.png" alt="图 9"></a></p>
+  </li>
+</ol>
+
+<h3 id="task-4-create-calculated-columns"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 4：</font></font></strong> <strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建计算列</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将添加其他列以启用按不同时间段进行过滤和分组。</font><font style="vertical-align: inherit;">您还将创建一个计算列来控制其他列的排序顺序。</font></font></p>
+
+<p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">为方便起见，本实验室中的所有 DAX 定义都可以从位于</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">D:\PL300\Labs\04-create-dax-calculations-in-power-bi-desktop\Assets\Snippets.txt</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">的片段文件中复制。</font></font></em></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表格工具</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上下文功能区的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">计算</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">组内，单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">新建列</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image19.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image19.png" alt="图 11"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在编辑栏中，键入以下内容（或从代码片段文件中复制），然后按</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Enter</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font></font></p>
+
+    <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">达克斯</font></font></strong></p>
+
+    <div class="code-header mt-3 mb-0 bg-light d-flex justify-content-between border"><span class="mx-2 text-muted text-capitalize font-weight-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">代码</font></font></span><button class="m-0 btn btn-code btn-sm btn-light codeBtn rounded-0 border-left text-muted font-weight-light" data-clipboard-target="#codeBlock1" type="button"><i class="fa fa-files-o mr-2" aria-hidden="true"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">复制</font></font></button></div><pre id="codeBlock1" class="mt-0"><code class="hljs javascript"> Year =
+ <span class="hljs-string"><span class="hljs-string">"FY"</span></span> &amp; YEAR(<span class="hljs-string"><span class="hljs-string">'Date'</span></span>[<span class="hljs-built_in"><span class="hljs-built_in">Date</span></span>]) + IF(MONTH(<span class="hljs-string"><span class="hljs-string">'Date'</span></span>[<span class="hljs-built_in"><span class="hljs-built_in">Date</span></span>]) &gt; <span class="hljs-number"><span class="hljs-number">6</span></span>, <span class="hljs-number"><span class="hljs-number">1</span></span>)
+</code></pre>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通过首先输入列名称、后跟等号 (=) 和返回单值结果的 DAX 公式来创建计算列。</font><font style="vertical-align: inherit;">列名不能已存在于表中。</font></font></em></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该公式使用日期的年份值，但当月份在六月之后时，年份值会加一。</font><font style="vertical-align: inherit;">Adventure Works 的会计年度是这样计算的。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">验证是否添加了新列。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image20.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image20.png" alt="图 12"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用片段文件定义为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Date</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表创建以下两个计算列：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">四分之一</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">月</font></font></p>
+      </li>
+    </ul>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image21.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image21.png" alt="图 14"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要验证计算，请切换到报告视图。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要创建新报告页面，请单击左下角的加号图标。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image22.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image22.png" alt="图 15"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要将矩阵视觉对象添加到新报告页面，请在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">可视化</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗格中，选择矩阵视觉对象类型。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提示：您可以将光标悬停在每个图标上以显示描述视觉类型的工具提示。</font></font></em></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image23.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image23.png" alt="图 51"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，从</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日期</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表内部，将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">年份</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段拖到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">行</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">井/区域中。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image24.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image24.png" alt="图 17"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">月</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段拖到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">行井/区域中，直接在</font></font></strong><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">年</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段</font><font style="vertical-align: inherit;">下方。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image25.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image25.png" alt="图 18"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在矩阵视觉对象的右上角（或底部，取决于视觉对象的位置），单击分叉的双箭头图标（将所有年份向下展开一层）。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image26.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image26.png" alt="图 19"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请注意，年份扩展为月份，并且月份是按字母顺序而不是按时间顺序排序的。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image27.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image27.png" alt="图 20"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">默认情况下，文本值按字母顺序排序，数字从小到大排序，日期从最早到最晚排序。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要自定义</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">月份</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段排序顺序，请切换到数据视图。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">MonthKey</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列添加到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Date</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表中。</font></font></p>
+
+    <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">达克斯</font></font></strong></p>
+
+    <div class="code-header mt-3 mb-0 bg-light d-flex justify-content-between border"><span class="mx-2 text-muted text-capitalize font-weight-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">代码</font></font></span><button class="m-0 btn btn-code btn-sm btn-light codeBtn rounded-0 border-left text-muted font-weight-light" data-clipboard-target="#codeBlock2" type="button"><i class="fa fa-files-o mr-2" aria-hidden="true"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">复制</font></font></button></div><pre id="codeBlock2" class="mt-0"><code class="hljs javascript">MonthKey =<font></font>
+(YEAR(<span class="hljs-string"><span class="hljs-string">'Date'</span></span>[<span class="hljs-built_in"><span class="hljs-built_in">Date</span></span>]) * <span class="hljs-number"><span class="hljs-number">100</span></span>) + MONTH(<span class="hljs-string"><span class="hljs-string">'Date'</span></span>[<span class="hljs-built_in"><span class="hljs-built_in">Date</span></span>])
+</code></pre>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">此公式计算每个年/月组合的数值。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在数据视图中，验证新列是否包含数值（例如 2017 年 7 月的 201707 等）。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image28.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image28.png" alt="图 21"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">切换回报告视图。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，确保选中“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">月份”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段（选中后，它将具有深灰色背景）。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列工具</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”上下文功能区的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">排序</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”组内，单击“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">按列排序</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”，然后选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">“MonthKey”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image29.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image29.png" alt="图 22"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在矩阵视觉中，请注意月份现在按时间顺序排序。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image30.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image30.png" alt="图 23"></a></p>
+  </li>
+</ol>
+
+<h3 id="task-5-complete-the-date-table"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 5：</font></font></strong> <strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">完成日期表</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将</font><font style="vertical-align: inherit;">通过隐藏列和创建层次结构来完成</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Date表的设计。</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">然后，您将创建与</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Targets</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表的关系。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">切换到模型视图。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Date</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表中，隐藏</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">MonthKey</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列（将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Is Hidden</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">设置为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Yes</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fields</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">右侧窗格中，选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Date</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表，右键单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Year</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列，然后选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">create hierarchy</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+  <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通过右键单击和</font><strong><font style="vertical-align: inherit;">Rename</font></strong><font style="vertical-align: inherit;">将新创建的层次结构重命名为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fiscal</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font><strong><font style="vertical-align: inherit;"></font></strong><font style="vertical-align: inherit;"></font></li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">通过在字段窗格中选择它们，右键单击，选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Add to hierarchy</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> -&gt; </font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fiscal</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ，将以下两个剩余字段添加到 Fiscal hierachy 。</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">四分之一</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">月</font></font></p>
+      </li>
+    </ul>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image31.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image31.png" alt="图 24"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建以下两个模型关系：</font></font></p>
+
+    <ul>
+      <li>
+        <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日期 | </font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售</font><strong><font style="vertical-align: inherit;">日期</font></strong></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">| </font><font style="vertical-align: inherit;">订购日期</font></font></strong></p>
+      </li>
+      <li>
+        <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日期 | </font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">目标</font><strong><font style="vertical-align: inherit;">日期</font></strong></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">| </font><font style="vertical-align: inherit;">目标月</font></font></strong></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">隐藏以下两列：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售 | </font><font style="vertical-align: inherit;">订购日期</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">目标 | </font><font style="vertical-align: inherit;">目标月</font></font></p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="task-6-mark-the-date-table"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 6：标记日期表</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将日期表标记</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">为</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日期表。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">切换到报告视图。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日期</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表（不是</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日期</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段）。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表格工具</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上下文功能区的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日历</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">组中，单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">标记为日期表</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，然后选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">标记为日期表</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image32.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image32.png" alt="图 8"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">标记为日期表</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗口的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日期列</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">下拉列表中，选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日期</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image33.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image33.png" alt="图 37"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">确定</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image34.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image34.png" alt="图 26"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">保存 Power BI Desktop 文件。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Power BI Desktop 现在可以理解该表定义了日期（时间）。</font><font style="vertical-align: inherit;">在依赖时间智能计算时，这一点很重要。</font><font style="vertical-align: inherit;">你将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 2 部分</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室中使用时间智能计算。</font></font></em></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请注意，当您的数据源中没有日期表时，这种日期表设计方法适用。</font><font style="vertical-align: inherit;">如果你有一个数据仓库，从它的日期维度表中加载日期数据而不是在你的数据模型中“重新定义”日期逻辑是合适的。</font></font></em></p>
+  </li>
+</ol>
+
+<h2 id="exercise-2-create-measures"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 2：创建度量</font></font></strong></h2>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本练习中，您将创建多个度量并设置其格式。</font></font></p>
+
+<h3 id="task-1-create-simple-measures"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 1：创建简单的度量</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将创建简单的度量。</font><font style="vertical-align: inherit;">简单度量聚合单个列中的值或计算表的行数。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Report 视图的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Page 2</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上，在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fields</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，拖动</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales | </font><font style="vertical-align: inherit;">单价</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段转化为矩阵可视化。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室使用速记符号来引用字段。</font><font style="vertical-align: inherit;">它看起来像这样</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">：</font><font style="vertical-align: inherit;">单价</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">在此示例中，</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是表名称，而</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Unit Price</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是字段名称。</font></font></em></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image35.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image35.png" alt="图 27"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您可能还记得</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室中的模型数据中，您将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Unit Price</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列设置为按</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Average</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">汇总。</font><font style="vertical-align: inherit;">您在矩阵视觉中看到的结果是月平均单价（单价值的总和除以单价的计数）。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在可视字段窗格（位于“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">可视化</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗格下方）的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">值</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”字段井/区域中，请注意</font><font style="vertical-align: inherit;">列出了“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单价” 。</font></font></strong><font style="vertical-align: inherit;"></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image36.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image36.png" alt="图 28"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击Unit Price</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">的向下箭头</font><font style="vertical-align: inherit;">，然后注意可用的菜单选项。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image37.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image37.png" alt="图 30"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">可见数字列允许报表作者在报表设计时决定列值将如何汇总（或不汇总）。</font><font style="vertical-align: inherit;">它可能导致不适当的报告。</font><font style="vertical-align: inherit;">然而，一些数据建模者不喜欢碰运气，他们选择隐藏这些列，而是公开度量中定义的聚合逻辑。</font><font style="vertical-align: inherit;">这是您现在将在本实验室中采用的方法。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要创建度量，请在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，右键单击“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”表，然后选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">“新建度量”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image38.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image38.png" alt="图 31"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在编辑栏中，添加以下度量定义：</font></font></p>
+
+    <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">达克斯</font></font></strong></p>
+
+    <div class="code-header mt-3 mb-0 bg-light d-flex justify-content-between border"><span class="mx-2 text-muted text-capitalize font-weight-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">代码</font></font></span><button class="m-0 btn btn-code btn-sm btn-light codeBtn rounded-0 border-left text-muted font-weight-light" data-clipboard-target="#codeBlock3" type="button"><i class="fa fa-files-o mr-2" aria-hidden="true"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">复制</font></font></button></div><pre id="codeBlock3" class="mt-0"><code class="hljs nginx"> <span class="hljs-attribute"><span class="hljs-attribute">Avg</span></span> Price =  <font></font>
+ ‎AVERAGE(Sales[Unit Price])<font></font>
+</code></pre>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">平均价格</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">度量添加到矩阵视觉对象。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请注意，它产生与“单价”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列相同的结果</font><font style="vertical-align: inherit;">（但格式不同）。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Values</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">池中，打开</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Avg Price</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段的上下文菜单，并注意无法更改聚合技术。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image39.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image39.png" alt="图 32"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">无法修改度量的聚合行为。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用片段文件定义为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表创建以下五个度量：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">中位数价格</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最低价格</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最高价格</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">订单</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">订单行</font></font></p>
+      </li>
+    </ul>
+
+    <p><em><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Orders</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">度量中使用的 DISTINCTCOUNT() 函数</font><font style="vertical-align: inherit;">将只计算一次订单（忽略重复项）。</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Order Lines</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">度量</font><font style="vertical-align: inherit;">中使用的 COUNTROWS() 函数对表进行操作。</font></font></em></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在这种情况下，订单数是通过计算不同的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SalesOrderNumber</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列值来计算的，而订单行数只是表格行数（每行是订单的一行）。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">切换到模型视图，然后多选四个价格度量：</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">平均价格</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最高价格</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">中位数价格</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最低价格</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">对于多选措施，配置如下要求：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将格式设置为两位小数</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分配给名为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">定价的显示文件夹</font></font></strong></p>
+      </li>
+    </ul>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image40.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image40.png" alt="图 33"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">隐藏</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单价</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">报告作者</font><font style="vertical-align: inherit;">现在无法使用</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单价列。</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">他们必须使用您添加到模型中的定价度量。</font><font style="vertical-align: inherit;">这种设计方法可确保报告作者不会不恰当地汇总价格，例如，将价格相加。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">多选</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Order Lines</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Orders</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">度量，然后配置以下需求：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">设置格式使用千位分隔符</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分配给名为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Counts的显示文件夹</font></font></strong></p>
+      </li>
+    </ul>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image41.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image41.png" alt="图 36"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在报表视图中，在矩阵视觉对象的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">值</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">池/区域中，对于</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单价</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段，单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将其删除。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image42.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image42.png" alt="图 38"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">增加矩阵视觉对象的大小以填充页面宽度和高度。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将以下五个度量添加到矩阵视觉对象：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">中位数价格</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最低价格</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最高价格</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">订单</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">订单行</font></font></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">验证结果是否合理且格式正确。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image43.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image43.png" alt="图 39"></a></p>
+  </li>
+</ol>
+
+<h3 id="task-2-create-additional-measures"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 2：创建其他度量</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将创建使用更复杂公式的其他度量。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在报告视图中，选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">第 1 页</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image44.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image44.png" alt="图 40"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">查看表格视觉对象，注意</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Target</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列的总数。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image45.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image45.png" alt="图 41"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择表视觉对象，然后在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">可视化</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗格中，删除“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">目标</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”字段。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image46.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image46.png" alt="图 42"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重命名</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">目标 | </font><font style="vertical-align: inherit;">目标</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列作为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">目标 | </font><font style="vertical-align: inherit;">目标金额</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提示：在报表视图中重命名列有多种方法：在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，您可以右键单击列，然后选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重命名</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">- 或者，双击列，或按</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">F2</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></em></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您将要创建一个名为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Target</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">的度量。</font><font style="vertical-align: inherit;">在同一个表中不可能有同名的列和度量。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在Targets</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表</font><font style="vertical-align: inherit;">上创建以下度量：</font></font></p>
+
+    <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">达克斯</font></font></strong></p>
+
+    <div class="code-header mt-3 mb-0 bg-light d-flex justify-content-between border"><span class="mx-2 text-muted text-capitalize font-weight-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">代码</font></font></span><button class="m-0 btn btn-code btn-sm btn-light codeBtn rounded-0 border-left text-muted font-weight-light" data-clipboard-target="#codeBlock4" type="button"><i class="fa fa-files-o mr-2" aria-hidden="true"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">复制</font></font></button></div><pre id="codeBlock4" class="mt-0"><code class="hljs nginx"> <span class="hljs-attribute"><span class="hljs-attribute">Target</span></span> =<font></font>
+<font></font>
+ IF(<font></font>
+<font></font>
+ HASONEVALUE(<span class="hljs-string"><span class="hljs-string">'Salesperson (Performance)'</span></span>[Salesperson]),<font></font>
+<font></font>
+ SUM(Targets[TargetAmount])<font></font>
+<font></font>
+ )<font></font>
+</code></pre>
+
+    <p><em><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HASONEVALUE() 函数测试是否过滤了Salesperson</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列</font><font style="vertical-align: inherit;">中的单个值。</font><font style="vertical-align: inherit;">如果为真，则表达式返回目标金额的总和（仅针对该销售人员）。</font><font style="vertical-align: inherit;">如果为 false，则返回 BLANK。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将目标</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">度量格式化</font><font style="vertical-align: inherit;">为零小数位。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提示：您可以使用</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">测量工具</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上下文功能区。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">隐藏</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">TargetAmount</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提示：您可以右键单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中的列，然后选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">隐藏</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">目标</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">度量添加到表视觉对象。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请注意，</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">目标</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列总计现在为空白。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image47.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image47.png" alt="图 43"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用片段文件定义为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Targets</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表创建以下两个度量：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方差</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方差保证金</font></font></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">格式化</font><font style="vertical-align: inherit;">零小数位的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方差度量。</font></font></strong><font style="vertical-align: inherit;"></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将方差边际</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">度量格式化</font><font style="vertical-align: inherit;">为带两位小数的百分比。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Variance</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Variance Margin</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">度量添加到表视觉对象。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">调整表格视觉对象的大小，以便可以看到所有列和行。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image48.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image48.png" alt="图 44"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">虽然看起来所有销售人员都没有达到目标，但请记住，表格视觉效果尚未按特定时间段过滤。</font><font style="vertical-align: inherit;">你将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中的设计报告第 1 部分</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室中生成按用户选择的时间段筛选的销售业绩报告。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格的右上角</font><font style="vertical-align: inherit;">，折叠并展开该窗格。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image49.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image49.png" alt="图 45"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">折叠并重新打开窗格会重置内容。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请注意，</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">目标</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表现在出现在列表的顶部。</font></font></p>
+
+    <p><a href="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image50.png" target="_blank"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/05-create-dax-calculations-in-power-bi-desktop_image50.png" alt="图 46"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">仅包含可见度量的表会自动列在列表顶部。</font></font></em></p>
+  </li>
+</ol>
+
+<h3 id="task-3-finish-up"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 3：完成</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将完成实验。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">保存 Power BI Desktop 文件。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果你打算开始下一个实验室，请将 Power BI Desktop 保持打开状态。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">你将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 2 部分</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室中使用 DAX 通过更高级的计算来增强数据模型。</font></font></em></p>
+  </li>
+</ol>
+
+            </article>
+        </main>
+    </div>
+    <footer class="fixed-bottom d-print-none">
+        <nav class="navbar navbar-light bg-light d-flex justify-content-around">
+            <span class="navbar-text">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <a href="https://github.com/MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst" target="_blank" class="ml-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                    MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst
+                </font></font></a>
+            </span>
+        </nav>
+    </footer>
+    <script src="./04-create-dax-calculations-in-power-bi-desktop_files/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="./04-create-dax-calculations-in-power-bi-desktop_files/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="./04-create-dax-calculations-in-power-bi-desktop_files/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="./04-create-dax-calculations-in-power-bi-desktop_files/clipboard.min.js"></script>
+    <script src="./04-create-dax-calculations-in-power-bi-desktop_files/highlight.min.js"></script>
+    <script src="./04-create-dax-calculations-in-power-bi-desktop_files/script.js"></script>
+
+
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./04-create-dax-calculations-in-power-bi-desktop_files/translate_24dp.png" width="20" height="20" alt="Google Translate"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div style="position: static !important;"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div></body></html>

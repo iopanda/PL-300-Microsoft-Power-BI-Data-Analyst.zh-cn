@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<!-- saved from url=(0136)https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/03-configure-data-model-in-power-bi-desktop.html -->
+<html lang="zh-CN" class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>PL-300-Microsoft-Power-BI-数据分析器</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="./03-configure-data-model-in-power-bi-desktop_files/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="./03-configure-data-model-in-power-bi-desktop_files/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="./03-configure-data-model-in-power-bi-desktop_files/vs.min.css">
+        <script src="./03-configure-data-model-in-power-bi-desktop_files/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <link rel="stylesheet" href="./03-configure-data-model-in-power-bi-desktop_files/style.css">
+    <link type="text/css" rel="stylesheet" charset="UTF-8" href="./03-configure-data-model-in-power-bi-desktop_files/translateelement.css"></head>
+    <body data-spy="scroll" data-target="#linksMenu">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <div class="container d-flex justify-content-between">
+            <a class="my-1 title text-white" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst">
+                <img src="./03-configure-data-model-in-power-bi-desktop_files/Microsoft-logo_rgb_c-wht.png" alt="微软徽标" style="width:138px;height:61px;">
+            </a>
+            <span class="my-1 title text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">微软官方课件</font></font></span>
+            <a href="https://github.com/MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst" target="_blank" class="btn btn-sm btn-outline-secondary text-light">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <span class="ml-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GitHub</font></font></span>
+            </a>
+        </div>
+        <!--
+        <div class="container d-flex justify-content-between">
+            <a class="my-1 title text-azure text-uppercase" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst">
+                PL-300-Microsoft-Power-BI-Data-Analyst
+            </a>
+            <a href="https://github.com/MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst" target="_blank" class="btn btn-sm btn-outline-secondary text-light">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <span class="ml-2">GitHub</span>
+            </a>
+        </div>
+        -->
+    </nav>
+    <div class="container">
+        <main class="row extra-padding">
+            <aside class="col-sm-2">       
+                <nav id="linksMenu" class="toc sticky-top">
+                    <ul class="nav navbar-nav flex-column">
+                    <li class="nav-item"><a class="nav-link" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/03-configure-data-model-in-power-bi-desktop.html#exercise-1-create-model-relationships"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 1：创建模型关系</font></font></a></li><li class="nav-item"><a class="nav-link" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/03-configure-data-model-in-power-bi-desktop.html#exercise-2-configure-tables"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 2：配置表</font></font></a></li><li class="nav-item"><a class="nav-link" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/03-configure-data-model-in-power-bi-desktop.html#exercise-3-review-the-model-interface"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 3：查看模型界面</font></font></a></li><li class="nav-item"><a class="nav-link" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/03-configure-data-model-in-power-bi-desktop.html#exercise-4-create-quick-measures"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 4：创建快速测量</font></font></a></li></ul>
+                </nav>         
+            </aside>
+            <hr class="">
+            <article class="col-sm-10 mb-5">
+                <h1 id="model-data-in-power-bi-desktop"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Power BI Desktop 中的模型数据</font></font></strong></h1>
+
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">完成实验的预计时间为 45 分钟</font></font></strong></p>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本实验中，您将开始开发数据模型。</font><font style="vertical-align: inherit;">它将涉及创建表之间的关系，然后配置表和列属性以提高数据模型的友好性和可用性。</font><font style="vertical-align: inherit;">您还将创建层次结构并创建快速度量。</font></font></p>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本实验中，您将学习如何：</font></font></p>
+
+<ul>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建模型关系</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">配置表和列属性</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建层次结构</font></font></p>
+  </li>
+</ul>
+
+<h3 id="lab-story"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室故事</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该实验室是一系列实验室中的众多实验室之一，这些实验室被设计成一个完整的故事，从数据准备到发布为报告和仪表板。</font><font style="vertical-align: inherit;">您可以按任何顺序完成实验。</font><font style="vertical-align: inherit;">但是，如果您打算通过多个实验室工作，我们建议您按以下顺序进行：</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中准备数据</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中加载数据</font></font></p>
+  </li>
+  <li>
+    <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Power BI Desktop 中的模型数据</font></font></strong></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 1 部分</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 2 部分</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中设计报表，第 1 部分</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中设计报表，第 2 部分</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建 Power BI 仪表板</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中执行数据分析</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实施行级安全</font></font></p>
+  </li>
+</ol>
+
+<h2 id="exercise-1-create-model-relationships"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 1：创建模型关系</font></font></strong></h2>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本练习中，您将创建模型关系。</font></font></p>
+
+<h3 id="task-1-get-started"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 1：开始</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将为实验室设置环境。</font></font></p>
+
+<p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重要提示：如果您从上一个实验继续（并且您成功完成了该实验），请不要完成此任务；</font><font style="vertical-align: inherit;">相反，从下一个任务继续。</font></font></em></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">若要打开 Power BI Desktop，请在任务栏上单击 Microsoft Power BI Desktop 快捷方式。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image1.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image1.png" alt="图 12"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要关闭入门窗口，请单击窗口左上角的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+</ol>
+
+ 	<a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image2.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image2.png" alt="图 11"></a>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">若要打开初始 Power BI Desktop 文件，请单击“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”功能区选项卡以打开后台视图。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">打开报告</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+</ol>
+
+ 	<a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image3.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image3.png" alt="图 10"></a>
+
+<ol>
+  <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">浏览报告</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+</ol>
+
+ 	<a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image4.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image4.png" alt="图 8"></a>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">打开</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗口中，导航到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">D:\PL300\Labs\03-configure-data-model-in-power-bi-desktop\Starter</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件夹。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售分析</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">打开</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+</ol>
+
+ 	<a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image5.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image5.png" alt="图 7"></a>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">关闭所有可能打开的信息窗口。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要创建文件的副本，请单击“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”功能区选项卡以打开后台视图。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">另存为</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+</ol>
+
+ 	<a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image6.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image6.png" alt="图5"></a>
+
+<ol>
+  <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果提示应用更改，请单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">应用</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+</ol>
+
+ 	<a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image7.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image7.png" alt="图 15"></a>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">另存为</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗口中，导航到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">D:\PL300\MySolution</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件夹。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">保存</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+</ol>
+
+ 	<a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image8.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image8.png" alt="图三"></a>
+
+<h3 id="task-2-create-model-relationships"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 2：创建模型关系</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将创建模型关系。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 的左侧，单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">模型</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">视图图标。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image9.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image9.png" alt="图片1"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果您没有看到所有七个表格，请水平向右滚动，然后拖动表格并将它们更紧密地排列在一起，以便可以同时看到它们。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提示：您还可以使用位于窗口底部的缩放控件。</font></font></em></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在模型视图中，可以查看每个表和关系（表之间的连接器）。</font><font style="vertical-align: inherit;">目前，没有任何关系，因为在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Power BI Desktop 中准备数据</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室中，你禁用了数据加载关系选项。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要返回报告视图，请单击左侧的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">报告</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">视图图标。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image10.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image10.png" alt="图片 327"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要查看所有表字段，请在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，右键单击空白区域，然后选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">“全部展开”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image11.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image11.png" alt="图片 328"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要创建表视觉对象，请在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">产品</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”表中，选中“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">类别</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”字段。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image12.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image12.png" alt="图片 329"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室使用速记符号来引用字段。</font><font style="vertical-align: inherit;">它看起来像这样：</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">产品 | </font><font style="vertical-align: inherit;">类别</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">在此示例中，</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Product</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是表名，</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Category</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是字段名。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要向表中添加其他列，请在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，选中“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售 | </font><font style="vertical-align: inherit;">销售</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">领域。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请注意，表格视觉对象列出了四个产品类别，每个类别的销售额相同，总销售额也相同。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image13.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image13.png" alt="图 330"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">问题是该表基于来自不同表的字段。</font><font style="vertical-align: inherit;">期望是每个产品类别都显示该类别的销售额。</font><font style="vertical-align: inherit;">但是，由于这些表之间没有模型关系，因此</font><font style="vertical-align: inherit;">不会过滤</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales表。</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您现在将添加一个关系以在表之间传播过滤器。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">建模</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">功能区选项卡的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">关系</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">组内，单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">管理关系</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image14.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image14.png" alt="图片 331"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">管理关系</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗口中，请注意尚未定义任何关系。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要创建关系，请单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">新建</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image15.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image15.png" alt="图片 332"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建关系</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗口的第一个下拉列表中，选择“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">产品</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”表。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image16.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image16.png" alt="图片 333"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在第二个下拉列表中（在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Product</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表网格下方），选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image17.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image17.png" alt="图片 334"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请注意，</font><font style="vertical-align: inherit;">已自动选择每个表中的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ProductKey列。</font></font></strong><font style="vertical-align: inherit;"></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择这些列是因为它们共享相同的名称和数据类型。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cardinality</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">下拉列表中，请注意选择了</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">一对多 (1:*)</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">自动检测到基数，因为 Power BI 了解</font><strong><font style="vertical-align: inherit;">Product表中的</font></strong></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ProductKey</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列</font><font style="vertical-align: inherit;">包含唯一值。</font><font style="vertical-align: inherit;">一对多关系是最常见的基数，您在本实验中创建的所有关系都是这种类型。</font></font><strong><font style="vertical-align: inherit;"></font></strong><font style="vertical-align: inherit;"></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cross Filter Direction</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">下拉列表中，请注意选择了</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Single</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单一过滤器方向意味着过滤器从“一侧”传播到“多侧”。</font><font style="vertical-align: inherit;">在这种情况下，这意味着应用于</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Product</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表的过滤器将传播到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表，但不会传播到相反的方向。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请注意，</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">标记此关系</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">已激活。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">活动关系传播过滤器。</font><font style="vertical-align: inherit;">可以将关系标记为非活动，这样过滤器就不会传播。</font><font style="vertical-align: inherit;">当表之间存在多个关系路径时，可能存在非活动关系。</font><font style="vertical-align: inherit;">在这种情况下，模型计算可以使用特殊功能来激活它们。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">确定</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image18.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image18.png" alt="图片 335"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请注意，在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">管理关系</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗口中列出了新关系，然后单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">“关闭”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image19.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image19.png" alt="图片 336"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在报告中，请注意表格视觉对象已更新以显示每个产品类别的不同值。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image20.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image20.png" alt="图片 337"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">应用于</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Product</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表的过滤器现在传播到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">切换到模型视图，然后注意现在两个表之间有一个连接器（表是否彼此相邻并不重要）。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image21.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image21.png" alt="图片 338"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在图中，请注意您可以解释由</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和 ***** 指示符表示的基数。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">过滤器方向由箭头表示。</font><font style="vertical-align: inherit;">实线表示活动关系；</font><font style="vertical-align: inherit;">虚线表示非活动关系。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将光标悬停在关系上以突出显示相关列。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">有一种更简单的方法来建立关系。</font><font style="vertical-align: inherit;">在模型图中，您可以拖放列来创建新关系。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要使用不同的技术创建新关系，请从</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Reseller表中将</font></font></strong><font style="vertical-align: inherit;"><strong><font style="vertical-align: inherit;">ResellerKey</font></strong><font style="vertical-align: inherit;">列</font><font style="vertical-align: inherit;">拖到</font><strong><font style="vertical-align: inherit;">Sales表的</font></strong></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ResellerKey</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列上</font><font style="vertical-align: inherit;">。</font></font><strong><font style="vertical-align: inherit;"></font></strong><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"></font></strong><font style="vertical-align: inherit;"></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image22.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image22.png" alt="图 339"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提示：有时不想拖动列。</font><font style="vertical-align: inherit;">如果出现这种情况，请选择不同的列，然后再次选择要拖动的列，然后重试。</font><font style="vertical-align: inherit;">确保您看到添加到图表中的新关系。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用新技术创建以下两个模型关系：</font></font></p>
+
+    <ul>
+      <li>
+        <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">地区 | </font><font style="vertical-align: inherit;">SalesTerritory</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售密钥</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">| </font><font style="vertical-align: inherit;">销售区域键</font></font></strong></p>
+      </li>
+      <li>
+        <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售员 | </font><font style="vertical-align: inherit;">EmployeeKey</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> to </font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales | </font><font style="vertical-align: inherit;">员工密钥</font></font></strong></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在图表中，排列表格，使</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表格位于图表的中心，并围绕它排列相关表格。</font><font style="vertical-align: inherit;">将断开连接的桌子放在一边。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image23.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image23.png" alt="图片 340"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">保存 Power BI Desktop 文件。</font></font></p>
+  </li>
+</ol>
+
+<h2 id="exercise-2-configure-tables"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 2：配置表</font></font></strong></h2>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本练习中，您将通过创建层次结构以及隐藏、格式化和分类列来配置每个表。</font></font></p>
+
+<h3 id="task-1-configure-the-product-table"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 1：配置产品表</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将配置</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Product</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在模型视图的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，如有必要，展开</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">产品</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表以显示所有字段。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要创建层次结构，请在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，右键单击“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">类别</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”列，然后选择“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建层次结构</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">” 。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image24.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image24.png" alt="图片 341"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">属性”窗格（“</font></font></strong><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格</font><font style="vertical-align: inherit;">左侧）的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">名称</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”框中，将文本替换为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Products</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image25.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image25.png" alt="图片 344"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要将第二级添加到层次结构，请在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">属性</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗格的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">层次结构</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”下拉列表中，选择“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">子类别</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">” （您可能需要在窗格内向下滚动）。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要将第三级添加到层次结构，请在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">层次结构</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">下拉列表中选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">产品</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要完成层次结构设计，请单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apply Level Changes</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image26.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image26.png" alt="图片 343"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提示：不要忘记单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">应用级别更改</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">- 忽略此步骤是一个常见错误。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，请注意</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">产品</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">层次结构。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image27.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image27.png" alt="图片 347"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要显示层次结构级别，请展开</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Products</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">层次结构。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image28.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image28.png" alt="图片 346"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要将列组织到显示文件夹中，请在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，首先选择“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">背景颜色格式</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”列。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">按住</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ctrl</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">键的同时，选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字体颜色格式</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">属性</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗格的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">显示文件夹</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”框中，输入</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Formatting</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image29.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image29.png" alt="图片 348"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，请注意这两列现在位于一个文件夹中。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image30.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image30.png" alt="图片 349"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">显示文件夹是整理表格的好方法——尤其是对于包含许多字段的表格。</font></font></em></p>
+  </li>
+</ol>
+
+<h3 id="task-2-configure-the-region-table"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 2：配置 Region 表</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将配置</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">区域</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Region</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表中，创建一个名为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Regions</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">的层次结构，具有以下三个级别：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">团体</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">国家</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">地区</font></font></p>
+      </li>
+    </ul>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image31.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image31.png" alt="图片 350"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Country</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列（不是</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Country</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">层次结构级别）。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">属性</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗格中，展开“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">高级</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”部分（位于窗格底部），然后在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">数据类别</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”下拉列表中，选择“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">国家/地区</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">” 。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image32.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image32.png" alt="图片 352"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">数据分类可以为报表设计者提供提示。</font><font style="vertical-align: inherit;">在这种情况下，将列分类为国家或地区可为 Power BI 在呈现地图可视化时提供更准确的信息。</font></font></em></p>
+  </li>
+</ol>
+
+<h3 id="task-3-configure-the-reseller-table"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 3：配置经销商表</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将配置</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">经销商</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Reseller</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表中，创建一个名为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Resellers</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">的层次结构，具有以下两个级别：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">业务类型</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">经销商</font></font></p>
+      </li>
+    </ul>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image33.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image33.png" alt="图片 351"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建名为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Geography</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">的第二个层次结构，具有以下四个级别：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">国家地区</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">州-省</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">城市</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">经销商</font></font></p>
+      </li>
+    </ul>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image34.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image34.png" alt="图片 353"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将</font><strong><font style="vertical-align: inherit;">Country-Region</font></strong><font style="vertical-align: inherit;">、</font><strong><font style="vertical-align: inherit;">State-Province</font></strong><font style="vertical-align: inherit;">和</font><strong><font style="vertical-align: inherit;">City</font></strong><font style="vertical-align: inherit;">列（不是层次级别）的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">数据类别</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分别设置为</font><strong><font style="vertical-align: inherit;">Country/Region</font></strong><font style="vertical-align: inherit;">、</font><strong><font style="vertical-align: inherit;">State or Province</font></strong><font style="vertical-align: inherit;">和</font><strong><font style="vertical-align: inherit;">City</font></strong><font style="vertical-align: inherit;">。</font></font><strong><font style="vertical-align: inherit;"></font></strong><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"></font></strong><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"></font></strong><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"></font></strong><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"></font></strong><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"></font></strong><font style="vertical-align: inherit;"></font></p>
+  </li>
+</ol>
+
+<h3 id="task-4-configure-the-sales-table"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 4：配置 Sales 表</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将配置</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表中，选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">成本</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">属性</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗格的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">描述</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”框中，输入：</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">基于标准成本</font></font></strong></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image35.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image35.png" alt="图片 358"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">描述可以应用于表、列、层次结构或度量。</font><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，当报表作者将光标悬停在字段上时，说明文本会显示在工具提示中。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">数量</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">属性</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗格的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">格式</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”部分中，将“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">千位分隔符</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”属性滑动到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">“是”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image36.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image36.png" alt="图片 357"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单价</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">属性</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗格的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">格式</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”部分中，将“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">小数位数</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”属性设置为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Advanced</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">组中（您可能需要向下滚动才能找到它），在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Summarize By</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">下拉列表中，选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Average</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image37.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image37.png" alt="图片 354"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">默认情况下，数字列将通过将值相加来进行汇总。</font><font style="vertical-align: inherit;">此默认行为不适用于</font><font style="vertical-align: inherit;">表示费率的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Unit Price之类的列。</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将默认汇总设置为平均值将产生有意义的结果。</font></font></em></p>
+  </li>
+</ol>
+
+<h3 id="task-5-bulk-update-properties"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 5：批量更新属性</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将使用单个批量更新来更新多个列。</font><font style="vertical-align: inherit;">您将使用这种方法来隐藏列，并格式化列值。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">产品 | </font><font style="vertical-align: inherit;">ProductKey</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">按住</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ctrl</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">键的同时，选择以下 13 列（跨越多个表）：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">地区 | </font><font style="vertical-align: inherit;">销售区域键</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">经销商 | </font><font style="vertical-align: inherit;">经销商密钥</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售 | </font><font style="vertical-align: inherit;">员工密钥</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售 | </font><font style="vertical-align: inherit;">产品密钥</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售 | </font><font style="vertical-align: inherit;">经销商密钥</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售 | </font><font style="vertical-align: inherit;">销售订单号</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售 | </font><font style="vertical-align: inherit;">销售区域键</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售员 | </font><font style="vertical-align: inherit;">员工ID</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售员 | </font><font style="vertical-align: inherit;">员工密钥</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售员 | </font><font style="vertical-align: inherit;">UPN</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售员地区 | </font><font style="vertical-align: inherit;">员工密钥</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售员地区 | </font><font style="vertical-align: inherit;">销售区域键</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">目标 | </font><font style="vertical-align: inherit;">员工ID</font></font></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">属性</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗格中，将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Is Hidden</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">属性滑动到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Yes</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image38.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image38.png" alt="图片 355"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">这些列被隐藏，因为它们要么由关系使用，要么将用于行级安全配置或计算逻辑。</font></font></em></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">你将</font><strong><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 1 部分</font></strong><font style="vertical-align: inherit;">实验室</font><font style="vertical-align: inherit;">的计算中使用</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SalesOrderNumber 。</font></font></strong><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"></font></strong><font style="vertical-align: inherit;"></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">多选以下三列：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">产品 | </font><font style="vertical-align: inherit;">标准成本</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售 | </font><font style="vertical-align: inherit;">成本</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售 | </font><font style="vertical-align: inherit;">销售量</font></font></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">属性</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗格的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">格式</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”部分中，将“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">小数位数</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”属性设置为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（零）。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image39.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image39.png" alt="图片 356"></a></p>
+  </li>
+</ol>
+
+<h2 id="exercise-3-review-the-model-interface"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 3：查看模型界面</font></font></strong></h2>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本练习中，您将切换到报告视图，并查看模型界面。</font></font></p>
+
+<h3 id="task-1-review-the-model-interface"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 1：查看模型界面</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将切换到报告视图，并查看模型界面。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">切换到报告视图。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，请注意以下事项：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列、层次结构及其级别是字段，可用于配置报表视觉效果</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">只有与报告创作相关的字段可见</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SalespersonRegion</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表不可见——因为它的所有字段都是隐藏</font><font style="vertical-align: inherit;">的</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Region</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Reseller</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表中的空间字段</font><font style="vertical-align: inherit;">装饰有空间图标</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">默认情况下，带有 sigma 符号 (Ʃ) 的字段将汇总</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将光标悬停在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales | </font><font style="vertical-align: inherit;">成本</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段</font></font></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">扩大</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售 | </font><font style="vertical-align: inherit;">OrderDate</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段，然后注意它显示了日期层次结构。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image40.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image40.png" alt="图片 359"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">目标</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">| </font><font style="vertical-align: inherit;">TargetMonth</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段提供了类似的层次结构。</font><font style="vertical-align: inherit;">这些层次结构不是由您创建的。</font><font style="vertical-align: inherit;">它们是自动创建的。</font><font style="vertical-align: inherit;">然而，有一个问题。</font><font style="vertical-align: inherit;">Adventure Works 财政年度从每年的 7 月 1 日开始。</font><font style="vertical-align: inherit;">但是，在这些自动创建的日期层次结构中，日期层次结构年份从每年的 1 月 1 日开始。</font></font></em></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您现在将关闭此自动行为。</font><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Power BI Desktop 中创建 DAX 计算，第 1 部分</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室中，你将使用 DAX 创建日期表，并对其进行配置以定义 Adventure Works 的日历。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要关闭自动/日期时间，请单击“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”功能区选项卡以打开后台视图。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在左侧，选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选项和设置</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，然后选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选项</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image41.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image41.png" alt="图片360"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选项</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗口左侧的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">当前文件</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">组中，选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">数据加载</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image42.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image42.png" alt="图片 361"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">时间智能</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">部分，取消选中</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">自动日期/时间</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image43.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image43.png" alt="图片 362"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">确定</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image44.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image44.png" alt="图 9"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，请注意日期层次结构不再可用。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image45.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image45.png" alt="图片 363"></a></p>
+  </li>
+</ol>
+
+<h2 id="exercise-4-create-quick-measures"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 4：创建快速测量</font></font></strong></h2>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本练习中，您将创建两个快速度量。</font></font></p>
+
+<h3 id="task-1-create-quick-measures"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 1：创建快速度量</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将创建两个快速度量来计算利润和利润率。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，右键单击“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”表，然后选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">“新建快速度量”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image46.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image46.png" alt="图片 366"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">快速测量”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗口的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">计算</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”下拉列表中，从“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">数学运算”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">组中选择“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">减法</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">” 。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image47.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image47.png" alt="图片 367"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font><strong><font style="vertical-align: inherit;">快速度量”窗口的“</font></strong></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中</font><font style="vertical-align: inherit;">，展开“</font><strong><font style="vertical-align: inherit;">销售</font></strong><font style="vertical-align: inherit;">”表。</font></font><strong><font style="vertical-align: inherit;"></font></strong><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"></font></strong><font style="vertical-align: inherit;"></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段拖到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Base Value</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">框中。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">成本</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段拖到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要减去的值</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">框中。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image48.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image48.png" alt="图片 368"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">确定</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image49.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image49.png" alt="图片 369"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">快速测量为您创建计算公式。</font><font style="vertical-align: inherit;">它们可以轻松快速地创建用于简单和常见的计算。</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 1 部分</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室中，</font><font style="vertical-align: inherit;">你将在不使用此工具的情况下创建度量。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”表中，注意该新度量。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image50.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image50.png" alt="图片 370"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">措施用计算器图标装饰。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要重命名度量，请右键单击它，然后选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重命名</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image51.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image51.png" alt="图片 371"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提示：要重命名字段，您也可以双击它，或选择它并按</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">F2</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将度量重命名为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Profit</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，然后按</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Enter</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表中，根据以下要求添加第二个快速度量：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">除法</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">数学运算</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分子</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">设置为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售额 | </font><font style="vertical-align: inherit;">利润</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分母</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">设置为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售 | </font><font style="vertical-align: inherit;">销售</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">领域</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将度量重命名为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">利润率</font></font></strong></p>
+      </li>
+    </ul>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image52.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image52.png" alt="图片 372"></a></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image53.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image53.png" alt="图片 373"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">确保已选择“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">利润率</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”度量，然后在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">度量工具”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上下文功能区中，将格式设置为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Percentage</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，保留两位小数。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image54.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image54.png" alt="图片 374"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要测试这两个度量，首先选择报告页面上的表格视觉对象。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，检查这两个度量。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image55.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image55.png" alt="图片 375"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击并拖动右侧指南以扩大表格视觉效果。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image56.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image56.png" alt="图片 376"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">验证测量结果是否产生格式正确的合理结果。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image57.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/03-configure-data-model-in-power-bi-desktop_image57.png" alt="图片 378"></a></p>
+  </li>
+</ol>
+
+<h3 id="task-2-create-a-many-to-many-relationship"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 2：创建多对多关系</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将在Salesperson</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表和</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表之间创建多对多关系</font><font style="vertical-align: inherit;">。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 的报表视图的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，选中以下两个字段以创建表格视觉对象：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售员 | </font><font style="vertical-align: inherit;">销售员</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售 | </font><font style="vertical-align: inherit;">销售量</font></font></p>
+      </li>
+    </ul>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室使用速记符号来引用字段。</font><font style="vertical-align: inherit;">它看起来像这样：</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售员 | </font><font style="vertical-align: inherit;">销售员</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">在此示例中，</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Salesperson</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">  是表名，</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Salesperson</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">  是字段名。</font></font></em></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image9.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image9.png" alt="图片1"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该表显示每个销售人员的销售额。</font><font style="vertical-align: inherit;">然而，销售人员和销售人员之间还有另一种关系。</font><font style="vertical-align: inherit;">一些销售人员属于一个、两个或可能更多的销售区域。</font><font style="vertical-align: inherit;">此外，销售区域可以分配有多个销售人员。</font></font></em></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">从绩效管理的角度来看，需要分析销售人员的销售额（基于他们分配的区域）并与销售目标进行比较。</font><font style="vertical-align: inherit;">您将在下一个练习中创建关系以支持此分析。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请注意，Michael Blythe 已售出近 900 万美元。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">切换到模型视图。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image10.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image10.png" alt="图 10"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">拖动</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SalespersonRegion</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表以将其放置在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Region</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Salesperson</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表之间。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用拖放技术创建以下两个模型关系：</font></font></p>
+
+    <ul>
+      <li>
+        <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售员 | </font><font style="vertical-align: inherit;">EmployeeKey</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SalespersonRegion | </font><font style="vertical-align: inherit;">员工密钥</font></font></strong></p>
+      </li>
+      <li>
+        <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">地区 | </font><font style="vertical-align: inherit;">SalesTerritoryKey</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SalespersonRegion | </font><font style="vertical-align: inherit;">销售区域键</font></font></strong></p>
+      </li>
+    </ul>
+
+    <p><em><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SalespersonRegion</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表</font><font style="vertical-align: inherit;">可以被认为是一个桥接表。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">切换到报告视图，然后注意到视觉没有更新——Michael Blythe 的销售结果没有改变。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">切换回模型视图，然后按照</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售人员</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表中的关系过滤器方向（箭头）。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">考虑一下</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Salesperson</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表过滤了</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表。</font><font style="vertical-align: inherit;">它还过滤</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SalespersonRegion</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表，但它不会继续通过将过滤器传播到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Region</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表（箭头指向错误的方向）。</font></font></em></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image11.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image11.png" alt="图片 380"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要编辑</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Region</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SalespersonRegion</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表之间的关系，请双击该关系。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">编辑关系</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗口的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">交叉过滤器方向”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">下拉列表中，选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">“两者”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选中</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">双向应用安全过滤器</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">复选框。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image12.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image12.png" alt="图片 381"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">确定</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image13.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image13.png" alt="图片 335"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请注意，该关系有一个双箭头。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image14.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image14.png" alt="图片 382"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">切换到报表视图，然后注意销售额值仍然没有改变。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">现在的问题与Salesperson</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表</font><font style="vertical-align: inherit;">之间有两种可能的过滤器传播路径有关。</font><font style="vertical-align: inherit;">基于“最少表数”评估，这种模糊性在内部得到解决。</font><font style="vertical-align: inherit;">需要明确的是，您不应该设计具有此类歧义的模型 - 该问题将在本实验室稍后部分解决，并通过完成</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 1 部分</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">切换到模型视图。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要通过桥接表强制过滤器传播，请编辑（双击）</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售人员</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表之间的关系。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">编辑关系</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗口中，取消选中“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">激活此关系”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">复选框。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image15.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image15.png" alt="图片 383"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">确定</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image16.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image16.png" alt="图片 5696"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">过滤器传播现在将遵循唯一的活动路径。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在图中，请注意非活动关系由虚线表示。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image17.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image17.png" alt="图片 5697"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">切换到报表视图，然后注意到 Michael Blythe 的销售额现在接近 2200 万美元。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image18.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image18.png" alt="图片 5698"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">另请注意，每个销售人员的销售额（如果添加）将超过表格总数。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">由于区域销售结果的双重、三重等计数，这是多对多关系的常见观察。</font><font style="vertical-align: inherit;">考虑列出的第二个销售人员布莱恩·韦尔克。</font><font style="vertical-align: inherit;">他的销售额等于总销售额。</font><font style="vertical-align: inherit;">这是正确的结果，仅仅因为他是销售总监；</font><font style="vertical-align: inherit;">他的销售额是用所有地区的销售额来衡量的。</font></font></em></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">虽然多对多关系现在有效，但现在无法分析销售人员的销售额（因为该关系处于非活动状态）。</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 1 部分</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室</font><font style="vertical-align: inherit;">中引入计算表时，您将能够重新激活关系</font><font style="vertical-align: inherit;">.</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">切换到 Modeling 视图，然后在图表中选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Salesperson</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">属性</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗格的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">名称</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”框中，将文本替换为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Salesperson (Performance)</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重命名的表格现在反映了它的用途：它用于根据销售人员分配的销售区域的销售额报告和分析销售人员的绩效。</font></font></em></p>
+  </li>
+</ol>
+
+<h3 id="task-3-relate-the-targets-table"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 3：关联目标表</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将创建与</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Targets</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表的关系</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">从销售人员（绩效）</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建关系| </font><strong><font style="vertical-align: inherit;">EmployeeID</font></strong><font style="vertical-align: inherit;">列和</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Targets | </font><font style="vertical-align: inherit;">员工 ID</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">列。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在报告视图中，添加</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">目标 | </font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表视觉对象的</font><strong><font style="vertical-align: inherit;">目标字段。</font></strong></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">调整表格视觉对象的大小，使所有列都可见。</font></font></p>
+
+    <p><a href="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image19.png" target="_blank"><img src="./03-configure-data-model-in-power-bi-desktop_files/04-configure-data-model-in-power-bi-desktop-advanced_image19.png" alt="图片 5699"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">现在可以可视化销售和目标，但请注意两个原因。</font><font style="vertical-align: inherit;">首先，没有时间段的过滤器，因此目标还包括未来的目标金额。</font><font style="vertical-align: inherit;">其次，目标不是累加的，因此不应显示总数。</font><font style="vertical-align: inherit;">它们可以通过格式化视觉对象来禁用，也可以通过使用计算逻辑来删除。</font><font style="vertical-align: inherit;">你将遵循第二种方法，</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 2 部分</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室中创建一个目标度量，当筛选出多个销售人员时将返回 BLANK。</font></font></em></p>
+  </li>
+</ol>
+
+<h3 id="task-4-finish-up"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 4：完成</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将完成实验。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">保存 Power BI Desktop 文件。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果提示应用查询，请单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">以后应用</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果你打算开始下一个实验室，请将 Power BI Desktop 保持打开状态。</font></font></p>
+  </li>
+</ol>
+
+            </article>
+        </main>
+    </div>
+    <footer class="fixed-bottom d-print-none">
+        <nav class="navbar navbar-light bg-light d-flex justify-content-around">
+            <span class="navbar-text">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <a href="https://github.com/MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst" target="_blank" class="ml-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                    MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst
+                </font></font></a>
+            </span>
+        </nav>
+    </footer>
+    <script src="./03-configure-data-model-in-power-bi-desktop_files/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <div style="position: static !important;"></div><script src="./03-configure-data-model-in-power-bi-desktop_files/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="./03-configure-data-model-in-power-bi-desktop_files/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="./03-configure-data-model-in-power-bi-desktop_files/clipboard.min.js"></script>
+    <script src="./03-configure-data-model-in-power-bi-desktop_files/highlight.min.js"></script>
+    <script src="./03-configure-data-model-in-power-bi-desktop_files/script.js"></script><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./03-configure-data-model-in-power-bi-desktop_files/translate_24dp.png" width="20" height="20" alt="Google Translate"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div>
+
+
+
+<div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div></body></html>
