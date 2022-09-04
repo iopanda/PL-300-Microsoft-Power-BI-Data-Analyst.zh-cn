@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<!-- saved from url=(0138)https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/07-design-report-in-power-bi-desktop-enhanced.html -->
+<html lang="zh-CN" class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>
+            PL-300-Microsoft-Power-BI-Data-Analyst
+        </title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="./07-design-report-in-power-bi-desktop-enhanced_files/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="./07-design-report-in-power-bi-desktop-enhanced_files/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="./07-design-report-in-power-bi-desktop-enhanced_files/vs.min.css">
+        <script src="./07-design-report-in-power-bi-desktop-enhanced_files/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <link rel="stylesheet" href="./07-design-report-in-power-bi-desktop-enhanced_files/style.css">
+    <link type="text/css" rel="stylesheet" charset="UTF-8" href="./07-design-report-in-power-bi-desktop-enhanced_files/translateelement.css"></head>
+    <body data-spy="scroll" data-target="#linksMenu">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <div class="container d-flex justify-content-between">
+            <a class="my-1 title text-white" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst">
+                <img src="./07-design-report-in-power-bi-desktop-enhanced_files/Microsoft-logo_rgb_c-wht.png" alt="微软徽标" style="width:138px;height:61px;">
+            </a>
+            <span class="my-1 title text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">微软官方课件</font></font></span>
+            <a href="https://github.com/MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst" target="_blank" class="btn btn-sm btn-outline-secondary text-light">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <span class="ml-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GitHub</font></font></span>
+            </a>
+        </div>
+        <!--
+        <div class="container d-flex justify-content-between">
+            <a class="my-1 title text-azure text-uppercase" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst">
+                PL-300-Microsoft-Power-BI-Data-Analyst
+            </a>
+            <a href="https://github.com/MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst" target="_blank" class="btn btn-sm btn-outline-secondary text-light">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <span class="ml-2">GitHub</span>
+            </a>
+        </div>
+        -->
+    </nav>
+    <div class="container">
+        <main class="row extra-padding">
+            <aside class="col-sm-2">       
+                <nav id="linksMenu" class="toc sticky-top">
+                    <ul class="nav navbar-nav flex-column">
+                    <li class="nav-item"><a class="nav-link" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/07-design-report-in-power-bi-desktop-enhanced.html#exercise-1-configure-sync-slicers"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 1：配置同步切片器</font></font></a></li><li class="nav-item"><a class="nav-link" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/07-design-report-in-power-bi-desktop-enhanced.html#exercise-2-configure-drill-through"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 2：配置钻取</font></font></a></li><li class="nav-item"><a class="nav-link" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/07-design-report-in-power-bi-desktop-enhanced.html#exercise-3-add-conditional-formatting"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 3：添加条件格式</font></font></a></li><li class="nav-item"><a class="nav-link" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/07-design-report-in-power-bi-desktop-enhanced.html#exercise-4-add-bookmarks-and-buttons"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 4：添加书签和按钮</font></font></a></li><li class="nav-item"><a class="nav-link" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/07-design-report-in-power-bi-desktop-enhanced.html#exercise-5-explore-the-report"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 5：探索报告</font></font></a></li></ul>
+                </nav>         
+            </aside>
+            <hr class="">
+            <article class="col-sm-10 mb-5">
+                <h1 id="design-a-report-in-power-bi-desktop-part-2"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中设计报表，第 2 部分</font></font></strong></h1>
+
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">完成实验的预计时间为 45 分钟</font></font></strong></p>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本实验中，您将</font><font style="vertical-align: inherit;">使用高级设计功能增强</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售分析。</font></font></strong><font style="vertical-align: inherit;"></font></p>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本实验中，您将学习如何：</font></font></p>
+
+<ul>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">同步切片器</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建钻取页面</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">应用条件格式</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建和使用书签</font></font></p>
+  </li>
+</ul>
+
+<h3 id="lab-story"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室故事</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该实验室是一系列实验室中的众多实验室之一，这些实验室被设计成一个完整的故事，从数据准备到发布为报告和仪表板。</font><font style="vertical-align: inherit;">您可以按任何顺序完成实验。</font><font style="vertical-align: inherit;">但是，如果您打算通过多个实验室工作，我们建议您按以下顺序进行：</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中准备数据</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中加载数据</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Power BI Desktop 中的模型数据</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 1 部分</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 2 部分</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中设计报表，第 1 部分</font></font></p>
+  </li>
+  <li>
+    <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中设计报表，第 2 部分</font></font></strong></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建 Power BI 仪表板</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中执行数据分析</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实施行级安全</font></font></p>
+  </li>
+</ol>
+
+<h2 id="exercise-1-configure-sync-slicers"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 1：配置同步切片器</font></font></strong></h2>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本练习中，您将同步报表页面切片器。</font></font></p>
+
+<h3 id="task-1-get-started--sign-in"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 1：开始 - 登录</font></font></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，你将通过登录 Power BI 设置实验室环境。</font></font></p>
+
+<p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重要提示：如果你已登录 Power BI，请从下一个任务继续。</font></font></em></p>
+
+<ol>
+  <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要打开 Microsoft Edge，请在任务栏上单击 Microsoft Edge 程序快捷方式。</font></font></li>
+</ol>
+
+ 	<a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image1.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image1.png" alt="图 12"></a>
+
+<ol>
+  <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Microsoft Edge 浏览器窗口中，导航到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://powerbi.microsoft.com</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+</ol>
+
+ 	<em>Tip: You can also use the Power BI Service favorite on the Microsoft Edge favorites bar.</em>
+
+<ol>
+  <li>Click <strong>Sign In</strong> (located at the top-right corner).</li>
+</ol>
+
+ 	<a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image2.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image2.png" alt="图 11"></a>
+
+<ol>
+  <li>
+    <p>Enter the account details provided to you.</p>
+  </li>
+  <li>
+    <p>If prompted to update the password, reenter the provided password, and then enter and confirm a new password.</p>
+  </li>
+</ol>
+
+ 	<em>Important: Be sure to record your new password.</em>
+
+<ol>
+  <li>
+    <p>Complete the sign in process.</p>
+  </li>
+  <li>
+    <p>If prompted by Microsoft Edge to stay signed in, click <strong>Yes</strong>.</p>
+  </li>
+  <li>
+    <p>In the Microsoft Edge browser window, in the Power BI service, in the <strong>Navigation</strong> pane, expand <strong>My Workspace</strong>.</p>
+  </li>
+</ol>
+
+ 	<a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image3.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image3.png" alt="图 22"></a>
+
+<ol>
+  <li>Leave the Microsoft Edge browser window open.</li>
+</ol>
+
+<h3 id="task-2-get-started--open-report">Task 2: Get started – Open report</h3>
+
+<p>In this task you will setup the environment for the lab by opening the starter report.</p>
+
+<p><em>Important: If you are continuing on from the previous lab (and you completed that lab successfully), do not complete this task; instead, continue from the next task.</em></p>
+
+<ol>
+  <li>
+    <p>To open the Power BI Desktop, on the taskbar, click the Microsoft Power BI Desktop shortcut.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image4.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image4.png" alt="图 10"></a></p>
+  </li>
+  <li>
+    <p>To close the getting started window, at the top-left of the window, click <strong>X</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image5.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image5.png" alt="图 9"></a></p>
+  </li>
+  <li>
+    <p>To sign in to the Power BI service, at the top-right, click <strong>Sign In</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image6.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image6.png" alt="图 8"></a></p>
+  </li>
+  <li>
+    <p>Complete the sign in process using the same account used to sign in to the Power BI service.</p>
+  </li>
+  <li>
+    <p>To open the starter Power BI Desktop file, click the <strong>File</strong> ribbon tab to open the backstage view.</p>
+  </li>
+  <li>
+    <p>Select <strong>Open Report</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image7.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image7.png" alt="图 7"></a></p>
+  </li>
+  <li>
+    <p>Click <strong>Browse Reports</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image8.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image8.png" alt="图 6"></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Open</strong> window, navigate to the <strong>D:\PL300\Labs\07-design-report-in-power-bi-desktop-enhanced\Starter</strong> folder.</p>
+  </li>
+  <li>
+    <p>Select the <strong>Sales Analysis</strong> file.</p>
+  </li>
+  <li>
+    <p>Click <strong>Open</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image9.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image9.png" alt="图5"></a></p>
+  </li>
+  <li>
+    <p>Close any informational windows that may open.</p>
+  </li>
+  <li>
+    <p>To create a copy of the file, click the <strong>File</strong> ribbon tab to open the backstage view.</p>
+  </li>
+  <li>
+    <p>Select <strong>Save As</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image10.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image10.png" alt="图4"></a></p>
+  </li>
+  <li>
+    <p>If prompted to apply changes, click <strong>Apply</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image11.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image11.png" alt="图三"></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Save As</strong> window, navigate to the <strong>D:\PL300\MySolution</strong> folder.</p>
+  </li>
+  <li>
+    <p>Click <strong>Save</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image12.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image12.png" alt="图二"></a></p>
+  </li>
+</ol>
+
+<h3 id="task-3-sync-slicers"><strong>Task 3: Sync slicers</strong></h3>
+
+<p>In this task you will sync the <strong>Year</strong> and <strong>Region</strong> slicers.</p>
+
+<p><em>You will continue the development of the report created in the <strong>Design a Report in Power BI Desktop, Part 1</strong> lab.</em></p>
+
+<ol>
+  <li>
+    <p>In Power BI Desktop, on the <strong>Overview</strong> page, set the <strong>Year</strong> slicer to <strong>FY2018</strong>.</p>
+  </li>
+  <li>
+    <p>Go to the <strong>My Performance</strong> page, and then notice that the <strong>Year</strong> slicer is a different value.</p>
+
+    <p><em>When slicers aren’t synced it can contribute to misrepresentation of data and frustration for report users. You’ll now sync the report slicers.</em></p>
+  </li>
+  <li>
+    <p>Return to the <strong>Overview</strong> page, and then select the <strong>Year</strong> slicer.</p>
+  </li>
+  <li>
+    <p>On the <strong>View</strong> ribbon tab, from inside the <strong>Show Panes</strong> group, click <strong>Sync Slicers</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image13.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image13.png" alt="图片1"></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Sync Slicers</strong> pane (at the left of the <strong>Visualizations</strong> pane), in the second column (which represents syncing), check the checkboxes for the <strong>Overview</strong> and <strong>My Performance</strong> pages.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image14.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image14.png" alt="图 93"></a></p>
+  </li>
+  <li>
+    <p>On the <strong>Overview</strong> page, select the <strong>Region</strong> slicer.</p>
+  </li>
+  <li>
+    <p>Sync the slicer with the <strong>Overview</strong> and <strong>Profit</strong> pages.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image15.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image15.png" alt="图 94"></a></p>
+  </li>
+  <li>
+    <p>Test the sync slicers by selecting different filter options, and then verifying that the synced slicers filter by the same selection.</p>
+  </li>
+  <li>
+    <p>To close the <strong>Sync Slicer</strong> page, click the <strong>X</strong> located at the top-right of the pane.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image16.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image16.png" alt="图 98"></a></p>
+  </li>
+</ol>
+
+<h2 id="exercise-2-configure-drill-through"><strong>Exercise 2: Configure Drill Through</strong></h2>
+
+<p>In this exercise you will create a new page and configure it as a drill through page. When you’ve completed the design, the page will look like the following:</p>
+
+<p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image17.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image17.png" alt="新页面的图像，包括卡片视觉和表格视觉。"></a></p>
+
+<h3 id="task-1-create-a-drill-through-page"><strong>Task 1: Create a drill through page</strong></h3>
+
+<p>In this task you will create a new page and configure it as a drill through page.</p>
+
+<ol>
+  <li>
+    <p>Add a new report page named <strong>Product Details</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image18.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image18.png" alt="图 95"></a></p>
+  </li>
+  <li>
+    <p>Right-click the <strong>Product Details</strong> page tab, and then select <strong>Hide Page</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image19.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image19.png" alt="图 97"></a></p>
+
+    <p><em>Report users won’t be able to go to the drill through page directly. They’ll need to access it from visuals on other pages. You’ll learn how to drill through to the page in the final exercise of this lab.</em></p>
+  </li>
+  <li>
+    <p>Beneath the <strong>Visualizations</strong> pane, in the <strong>Drill Through</strong> section, add the <strong>Product | Category</strong> field to the <strong>Add Drill-Through Fields Here</strong> box.</p>
+
+    <p><em>The labs use a shorthand notation to reference a field. It will look like this: <strong>Product | Category</strong>. In this example, <strong>Product</strong> is the table name and <strong>Category</strong> is the field name.</em></p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image20.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image20.png" alt="图 96"></a></p>
+  </li>
+  <li>
+    <p>To test the drill through page, in the drill through filter card, select <strong>Bikes</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image21.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image21.png" alt="图 99"></a></p>
+  </li>
+  <li>
+    <p>At the top-left of the report page, notice the arrow button.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image22.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image22.png" alt="图片 100"></a></p>
+
+    <p><em>A button is added automatically when a field is added to the drill through well/area. It allows report users to navigate back to the page from which they drilled through.</em></p>
+  </li>
+  <li>
+    <p>Add a <strong>Card</strong> visual to the page, and then resize and position it so it sits to the right of the button and fills the remaining width of the page.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image23.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image23.png" alt="图 13"></a></p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image24.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image24.png" alt="图 101"></a></p>
+  </li>
+  <li>
+    <p>Drag the <strong>Product | Category</strong> field into the card visual.</p>
+  </li>
+  <li>
+    <p>Configure the format options for the visual, and then turn the <strong>Category Label</strong> property to <strong>Off</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image25.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image25.png" alt="图 103"></a></p>
+  </li>
+  <li>
+    <p>Set the <strong>Background Color</strong> property to a light shade of gray.</p>
+  </li>
+  <li>
+    <p>Add a <strong>Table</strong> visual to the page, and then resize and position it so it sits beneath the card visual and fills the remaining space on the page.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image26.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image26.png" alt="图 14"></a></p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image27.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image27.png" alt="图 105"></a></p>
+  </li>
+  <li>
+    <p>Add the following fields to the visual:</p>
+
+    <ul>
+      <li>
+        <p>Product | Subcategory</p>
+      </li>
+      <li>
+        <p>Product | Color</p>
+      </li>
+      <li>
+        <p>Sales | Quantity</p>
+      </li>
+      <li>
+        <p>Sales | Sales</p>
+      </li>
+      <li>
+        <p>Sales | Profit Margin</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Configure the format options for the visual, and in the <strong>Values</strong> section, set the <strong>Text Size</strong> property to <strong>20pt</strong>.</p>
+
+    <p><em>The design of the drill through page is almost complete. You’ll enhance the page with conditional formatting in the next exercise.</em></p>
+  </li>
+</ol>
+
+<h2 id="exercise-3-add-conditional-formatting"><strong>Exercise 3: Add Conditional Formatting</strong></h2>
+
+<p>In this exercise you will enhance the drill through page with conditional formatting. When you’ve completed the design, the page will look like the following:</p>
+
+<p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image28.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image28.png" alt="更新页面的图像，显​​示颜色格式的值和图标。"></a></p>
+
+<h3 id="task-1-add-conditional-formatting"><strong>Task 1: Add conditional formatting</strong></h3>
+
+<p>In this task you will enhance the drill through page with conditional formatting.</p>
+
+<ol>
+  <li>
+    <p>Select the table visual.</p>
+  </li>
+  <li>
+    <p>In the visualization pane, click the down-arrow on the <strong>Profit Margin</strong> value, and then select <strong>Conditional Formatting | Icons</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image29.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image29.png" alt="图 107"></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Icons – Profit Margin</strong> window, in the <strong>Icon Layout</strong> dropdown list, select <strong>Right of Data</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image30.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image30.png" alt="图 108"></a></p>
+  </li>
+  <li>
+    <p>To delete the middle rule, at the left of the yellow triangle, click <strong>X</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image31.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image31.png" alt="图 109"></a></p>
+  </li>
+  <li>
+    <p>Configure the first rule (red diamond) as follows:</p>
+
+    <ul>
+      <li>
+        <p>In the second control, remove the value</p>
+      </li>
+      <li>
+        <p>In the third control, select <strong>Number</strong></p>
+      </li>
+      <li>
+        <p>In the fifth control, enter <strong>0</strong></p>
+      </li>
+      <li>
+        <p>In the sixth control, select <strong>Number</strong></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Configure the second rule (green circle) as follows:</p>
+
+    <ul>
+      <li>
+        <p>In the second control, enter <strong>0</strong></p>
+      </li>
+      <li>
+        <p>In the third control, select <strong>Number</strong></p>
+      </li>
+      <li>
+        <p>In the fifth control, remove the value</p>
+      </li>
+      <li>
+        <p>In the sixth control, select <strong>Number</strong></p>
+      </li>
+    </ul>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image32.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image32.png" alt="图 110"></a></p>
+
+    <p><em>The rules can be interpreted as follows: display a red diamond if the profit margin value is less than 0; otherwise if the value is great or equal to zero, display a green circle.</em></p>
+  </li>
+  <li>
+    <p>Click <strong>OK</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image33.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image33.png" alt="图 111"></a></p>
+  </li>
+  <li>
+    <p>In the table visual, verify that the that the correct icons are displayed.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image34.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image34.png" alt="图 112"></a></p>
+  </li>
+  <li>
+    <p>Configure background color conditional formatting for the <strong>Color</strong> field.</p>
+  </li>
+  <li>
+    <p>In the <strong>Background Color – Color</strong> window, in the <strong>Format Style</strong> dropdown list, select <strong>Field Value</strong>.</p>
+  </li>
+  <li>
+    <p>In the <strong>What field should we base this on?</strong> dropdown list, select <strong>Product | Formatting | Background Color Format</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image36.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image36.png" alt="图 114"></a></p>
+  </li>
+  <li>
+    <p>Click <strong>OK</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image37.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image37.png" alt="图 115"></a></p>
+  </li>
+  <li>
+    <p>Repeat the previous steps to configure font color conditional formatting for the <strong>Color</strong> field, using the <strong>Product | Formatting | Font Color Format</strong> field</p>
+
+    <p><em>You may recall that the background and font colors were source from the <strong>ColorFormats.csv</strong> file in the <strong>Prepare Data in Power BI Desktop</strong> lab, and then integrated with the <strong>Product</strong> query in the <strong>Load Data in Power BI Desktop</strong> lab.</em></p>
+  </li>
+</ol>
+
+<h2 id="exercise-4-add-bookmarks-and-buttons"><strong>Exercise 4: Add Bookmarks and Buttons</strong></h2>
+
+<p>In this exercise you will enhance the <strong>My Performance</strong> page with buttons, allowing the report user to select the visual type to display. When you’ve completed the design, the page will look like the following:</p>
+
+<p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image38.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image38.png" alt="Image of an updated page 3, showing two buttons and now just two visuals."></a></p>
+
+<h3 id="task-1-add-bookmarks"><strong>Task 1: Add bookmarks</strong></h3>
+
+<p>In this task you will add two bookmarks, one to display each of the monthly sales/targets visuals.</p>
+
+<ol>
+  <li>
+    <p>Go to the <strong>My Performance</strong> page.</p>
+  </li>
+  <li>
+    <p>On the <strong>View</strong> ribbon tab, from inside the <strong>Show Panes</strong> group, click <strong>Bookmarks</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image39.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image39.png" alt="Picture 118"></a></p>
+  </li>
+  <li>
+    <p>On the <strong>View</strong> ribbon tab, from inside the <strong>Show Panes</strong> group, click <strong>Selection</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image40.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image40.png" alt="Picture 119"></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Selection</strong> pane, beside one of the <strong>Sales and Target by Month</strong> items, to hide the visual, click the eye icon.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image41.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image41.png" alt="Picture 120"></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Bookmarks</strong> pane, click <strong>Add</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image42.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image42.png" alt="Picture 121"></a></p>
+  </li>
+  <li>
+    <p>To rename the bookmark, double-click the bookmark.</p>
+  </li>
+  <li>
+    <p>If the visible chart is the bar chart, rename the bookmark as <strong>Bar Chart ON</strong>, otherwise rename the bookmark as <strong>Column Chart ON</strong>.</p>
+  </li>
+  <li>
+    <p>To edit the bookmark, in the <strong>Bookmarks</strong> pane, hover the cursor over the bookmark, click the ellipsis, and then select <strong>Data</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image43.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image43.png" alt="Picture 16"></a></p>
+
+    <p><em>Disabling the <strong>Data</strong> option means the bookmark won’t use the current filter state. That’s important because otherwise the bookmark would permanently lock in the filter currently applied by the <strong>Year</strong> slicer.</em></p>
+  </li>
+  <li>
+    <p>To update the bookmark, click the ellipsis again, and then select <strong>Update</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image44.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image44.png" alt="Picture 18"></a></p>
+
+    <p><em>In the following steps, you’ll create and configure a second bookmark to show the second visual.</em></p>
+  </li>
+  <li>
+    <p>In the <strong>Selection</strong> pane, toggle the visibility of the two <strong>Sales and Target by Month</strong> items.</p>
+
+    <p><em>In other words, make the visible visual hidden, and make the hidden visual visible.</em></p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image45.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image45.png" alt="Picture 122"></a></p>
+  </li>
+  <li>
+    <p>Create a second bookmark, and name it appropriately (either <strong>Column Chart ON</strong> or <strong>Bar Chart ON).</strong></p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image46.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image46.png" alt="Picture 123"></a></p>
+  </li>
+  <li>
+    <p>Configure the second bookmark to ignore filters (<strong>Data</strong> option off), and update the bookmark.</p>
+  </li>
+  <li>
+    <p>In the <strong>Selection</strong> pane, to make both visuals visible, simply show the hidden visual.</p>
+  </li>
+  <li>
+    <p>Resize and reposition both visuals so they fill the page beneath the multi-card visual, and completely overlap one another.</p>
+
+    <p><em>Tip: To select the visual that is covered up, select it in the <strong>Selection</strong> pane.</em></p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image47.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image47.png" alt="Picture 124"></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Bookmarks</strong> pane, select each of the bookmarks, and notice that only one of the visuals is visible.</p>
+
+    <p><em>The next stage of design is to add two buttons to the page, which will allow the report user to select the bookmarks.</em></p>
+  </li>
+</ol>
+
+<h3 id="task-2-add-buttons"><strong>Task 2: Add buttons</strong></h3>
+
+<p>In this task you will add two buttons, and assign bookmark actions to each.</p>
+
+<ol>
+  <li>
+    <p>On the <strong>Insert</strong> ribbon, from inside the <strong>Elements</strong> group, click <strong>Button</strong>, and then select <strong>Blank</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image48.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image48.png" alt="Picture 125"></a></p>
+  </li>
+  <li>
+    <p>Position the button directly beneath the <strong>Year</strong> slicer.</p>
+  </li>
+  <li>
+    <p>Select the button, and then in the <strong>Format button</strong> pane, click <strong>General</strong> and turn the <strong>Title</strong> property to <strong>On</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image49.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image49.png" alt="Picture 126"></a></p>
+  </li>
+  <li>
+    <p>Expand the <strong>Title</strong> section, and then in the <strong>Text</strong> box, enter <strong>Bar Chart</strong>.</p>
+  </li>
+  <li>
+    <p>Expand the <strong>Background</strong> section, and then set a background color using a complementary color.</p>
+  </li>
+  <li>
+    <p>Click <strong>Button</strong> and turn the <strong>Action</strong> property to <strong>On</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image50.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image50.png" alt="Picture 127"></a></p>
+  </li>
+  <li>
+    <p>Expand the <strong>Action</strong> section, and then set the <strong>Type</strong> dropdown list to <strong>Bookmark</strong>.</p>
+  </li>
+  <li>
+    <p>In the <strong>Bookmark</strong> dropdown list, select <strong>Bar Chart ON</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image51.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image51.png" alt="Picture 128"></a></p>
+  </li>
+  <li>
+    <p>Create a copy of the button by using copy and paste, and then configure the new button as follows:</p>
+
+    <p><em>Tip: The shortcut commands for copy and paste are <strong>Ctrl+C</strong> followed by <strong>Ctrl+V</strong>.</em></p>
+
+    <ul>
+      <li>
+        <p>Set the <strong>Button Text</strong> property to <strong>Column Chart</strong></p>
+      </li>
+      <li>
+        <p>In the <strong>Action</strong> section, set the <strong>Bookmark</strong> dropdown list to <strong>Column Chart ON</strong></p>
+      </li>
+    </ul>
+
+    <p><em>The design of the Sales Analysis report is now complete.</em></p>
+  </li>
+</ol>
+
+<h3 id="task-3-publish-the-report"><strong>Task 3: Publish the report</strong></h3>
+
+<p>In this task you will publish the report.</p>
+
+<ol>
+  <li>
+    <p>Select the <strong>Overview</strong> page.</p>
+  </li>
+  <li>
+    <p>In the <strong>Year</strong> slicer, select <strong>FY2020</strong>.</p>
+  </li>
+  <li>
+    <p>In the <strong>Region</strong> slicer, select <strong>Select All</strong>.</p>
+  </li>
+  <li>
+    <p>Save the Power BI Desktop file.</p>
+
+    <p><em>The file must always be saved prior to publishing to the Power BI service.</em></p>
+  </li>
+  <li>
+    <p>On the <strong>Home</strong> ribbon tab, from inside the <strong>Share</strong> group, click <strong>Publish</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image52.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image52.png" alt="Picture 21"></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Publish to Power</strong> BI window, notice that <strong>My Workspace</strong> is selected.</p>
+  </li>
+  <li>
+    <p>To publish the report, click <strong>Select</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image53.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image53.png" alt="Picture 20"></a></p>
+  </li>
+  <li>
+    <p>If prompted to replace the dataset, click <strong>Replace</strong>.</p>
+  </li>
+  <li>
+    <p>When the publication has succeeded, click <strong>Got It</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image54.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image54.png" alt="Picture 19"></a></p>
+  </li>
+  <li>
+    <p>Close Power BI Desktop.</p>
+
+    <p><em>You’ll explore the report in the Power BI service in the next exercise.</em></p>
+  </li>
+</ol>
+
+<h2 id="exercise-5-explore-the-report"><strong>Exercise 5: Explore the Report</strong></h2>
+
+<p>In this exercise you will explore the report in the Power BI service.</p>
+
+<h3 id="task-1-explore-the-report"><strong>Task 1: Explore the report</strong></h3>
+
+<p>In this task you will explore the report in the Power BI service.</p>
+
+<ol>
+  <li>
+    <p>In the Microsoft Edge browser window, in the Power BI service, in the <strong>Navigation</strong> pane, select <strong>My Workspace</strong> and then click the <strong>Sales Analysis</strong> report.</p>
+  </li>
+  <li>
+    <p>To test the drill through report, in the <strong>Overview</strong> page, in the <strong>Quantity by Category</strong> visual, right-click the <strong>Clothing</strong> bar, and then select <strong>Drill Through | Product Details</strong>.</p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image55.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image55.png" alt="Picture 130"></a></p>
+  </li>
+  <li>
+    <p>Notice that the <strong>Product Details</strong> page is for <strong>Clothing</strong>.</p>
+  </li>
+  <li>
+    <p>To return to the source page, at the top-left corner of the page, click the arrow button.</p>
+  </li>
+  <li>
+    <p>Select the <strong>My Performance</strong> page.</p>
+  </li>
+  <li>
+    <p>Click each of the buttons, and then notice that a different visual is displayed.</p>
+  </li>
+</ol>
+
+<h3 id="task-2-finish-up"><strong>Task 2: Finish up</strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将完成实验。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要返回您的工作区，请在窗口网页的横幅中单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我的工作区</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image56.png" target="_blank"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/08-design-report-in-power-bi-desktop-enhanced_image56.png" alt="Picture 23"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">让 Microsoft Edge 浏览器窗口保持打开状态。</font></font></p>
+  </li>
+</ol>
+
+            </article>
+        </main>
+    </div>
+    <footer class="fixed-bottom d-print-none">
+        <nav class="navbar navbar-light bg-light d-flex justify-content-around">
+            <span class="navbar-text">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <a href="https://github.com/MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst" target="_blank" class="ml-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                    MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst
+                </font></font></a>
+            </span>
+        </nav>
+    </footer>
+    <script src="./07-design-report-in-power-bi-desktop-enhanced_files/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <div style="position: static !important;"></div><script src="./07-design-report-in-power-bi-desktop-enhanced_files/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="./07-design-report-in-power-bi-desktop-enhanced_files/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="./07-design-report-in-power-bi-desktop-enhanced_files/clipboard.min.js"></script>
+    <script src="./07-design-report-in-power-bi-desktop-enhanced_files/highlight.min.js"></script>
+    <script src="./07-design-report-in-power-bi-desktop-enhanced_files/script.js"></script><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./07-design-report-in-power-bi-desktop-enhanced_files/translate_24dp.png" width="20" height="20" alt="Google Translate"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div>
+
+
+
+<div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div></body></html>

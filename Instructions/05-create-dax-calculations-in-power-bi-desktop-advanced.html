@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<!-- saved from url=(0148)https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/05-create-dax-calculations-in-power-bi-desktop-advanced.html -->
+<html lang="zh-CN" class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>PL-300-Microsoft-Power-BI-数据分析器</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/vs.min.css">
+        <script src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <link rel="stylesheet" href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/style.css">
+    <link type="text/css" rel="stylesheet" charset="UTF-8" href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/translateelement.css"></head>
+    <body data-spy="scroll" data-target="#linksMenu">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <div class="container d-flex justify-content-between">
+            <a class="my-1 title text-white" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst">
+                <img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/Microsoft-logo_rgb_c-wht.png" alt="微软徽标" style="width:138px;height:61px;">
+            </a>
+            <span class="my-1 title text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">微软官方课件</font></font></span>
+            <a href="https://github.com/MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst" target="_blank" class="btn btn-sm btn-outline-secondary text-light">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <span class="ml-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GitHub</font></font></span>
+            </a>
+        </div>
+        <!--
+        <div class="container d-flex justify-content-between">
+            <a class="my-1 title text-azure text-uppercase" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst">
+                PL-300-Microsoft-Power-BI-Data-Analyst
+            </a>
+            <a href="https://github.com/MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst" target="_blank" class="btn btn-sm btn-outline-secondary text-light">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <span class="ml-2">GitHub</span>
+            </a>
+        </div>
+        -->
+    </nav>
+    <div class="container">
+        <main class="row extra-padding">
+            <aside class="col-sm-2">       
+                <nav id="linksMenu" class="toc sticky-top">
+                    <ul class="nav navbar-nav flex-column">
+                    <li class="nav-item"><a class="nav-link" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/05-create-dax-calculations-in-power-bi-desktop-advanced.html#exercise-1-work-with-filter-context"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 1：使用过滤器上下文</font></font></a></li><li class="nav-item"><a class="nav-link" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/05-create-dax-calculations-in-power-bi-desktop-advanced.html#exercise-2-work-with-time-intelligence"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 2：使用时间智能</font></font></a></li></ul>
+                </nav>         
+            </aside>
+            <hr class="">
+            <article class="col-sm-10 mb-5">
+                <h1 id="create-dax-calculations-in-power-bi-desktop-part-2"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 2 部分</font></font></strong></h1>
+
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">完成实验的预计时间为 45 分钟</font></font></strong></p>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本实验中，您将使用涉及筛选上下文操作的 DAX 表达式创建度量。</font></font></p>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本实验中，您将学习如何：</font></font></p>
+
+<ul>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用 CALCULATE() 函数来操作过滤器上下文</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用时间智能函数</font></font></p>
+  </li>
+</ul>
+
+<h3 id="lab-story"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室故事</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该实验室是一系列实验室中的众多实验室之一，这些实验室被设计成一个完整的故事，从数据准备到发布为报告和仪表板。</font><font style="vertical-align: inherit;">您可以按任何顺序完成实验。</font><font style="vertical-align: inherit;">但是，如果您打算通过多个实验室工作，我们建议您按以下顺序进行：</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中准备数据</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中加载数据</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Power BI Desktop 中的模型数据</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 1 部分</font></font></p>
+  </li>
+  <li>
+    <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 2 部分</font></font></strong></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中设计报表，第 1 部分</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中设计报表，第 2 部分</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建 Power BI 仪表板</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中执行数据分析</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实施行级安全</font></font></p>
+  </li>
+</ol>
+
+<h2 id="exercise-1-work-with-filter-context"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 1：使用过滤器上下文</font></font></strong></h2>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本练习中，您将使用涉及筛选器上下文操作的 DAX 表达式创建度量。</font></font></p>
+
+<h3 id="task-1-get-started"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 1：开始</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将为实验室设置环境。</font></font></p>
+
+<p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重要提示：如果您从上一个实验继续（并且您成功完成了该实验），请不要完成此任务；</font><font style="vertical-align: inherit;">相反，从下一个任务继续。</font></font></em></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">若要打开 Power BI Desktop，请在任务栏上单击 Microsoft Power BI Desktop 快捷方式。</font></font></p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image1.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image1.png" alt="图 12"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要关闭入门窗口，请单击窗口左上角的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image2.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image2.png" alt="图 11"></a></p>
+  </li>
+  <li>
+    <p>To open the starter Power BI Desktop file, click the <strong>File</strong> ribbon tab to open the backstage view.</p>
+  </li>
+  <li>
+    <p>Select <strong>Open Report</strong>.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image3.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image3.png" alt="图 10"></a></p>
+  </li>
+  <li>
+    <p>Click <strong>Browse Reports</strong>.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image4.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image4.png" alt="图 9"></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Open</strong> window, navigate to the <strong>D:\PL300\Labs\05-create-dax-calculations-in-power-bi-desktop-advanced\Starter</strong> folder.</p>
+  </li>
+  <li>
+    <p>Select the <strong>Sales Analysis</strong> file.</p>
+  </li>
+  <li>
+    <p>Click <strong>Open</strong>.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image5.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image5.png" alt="图 8"></a></p>
+  </li>
+  <li>
+    <p>Close any informational windows that may open.</p>
+  </li>
+  <li>
+    <p>To create a copy of the file, click the <strong>File</strong> ribbon tab to open the backstage view.</p>
+  </li>
+  <li>
+    <p>Select <strong>Save As</strong>.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image6.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image6.png" alt="图 7"></a></p>
+  </li>
+  <li>
+    <p>If prompted to apply changes, click <strong>Apply</strong>.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image7.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image7.png" alt="图 6"></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Save As</strong> window, navigate to the <strong>D:\PL300\MySolution</strong> folder.</p>
+  </li>
+  <li>
+    <p>Click <strong>Save</strong>.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image8.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image8.png" alt="图二"></a></p>
+  </li>
+</ol>
+
+<h3 id="task-2-create-a-matrix-visual"><strong>Task 2: Create a matrix visual</strong></h3>
+
+<p>In this task you will create a matrix visual to support testing your new measures.</p>
+
+<ol>
+  <li>
+    <p>In Power BI Desktop, in Report view, create a new report page.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image9.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image9.png" alt="图片1"></a></p>
+  </li>
+  <li>
+    <p>On <strong>Page 3</strong>, add a matrix visual.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image10.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image10.png" alt="图 13"></a></p>
+  </li>
+  <li>
+    <p>Resize the matrix visual to fill the entire page.</p>
+  </li>
+  <li>
+    <p>To configure the matrix visual fields, from the <strong>Fields</strong> pane, drag the <strong>Region | Regions</strong> hierarchy, and drop it inside the visual.</p>
+
+    <p><em>The labs use a shorthand notation to reference a field or hierarchy. It will look like this: <strong>Region | Regions</strong>. In this example, <strong>Region</strong> is the table name and <strong>Regions</strong> is the hierarchy name.</em></p>
+  </li>
+  <li>
+    <p>Add also the <strong>Sales | Sales</strong> field.</p>
+  </li>
+  <li>
+    <p>To expand the entire hierarchy, at the top-right of the matrix visual, click the forked-double arrow icon twice.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image11.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image11.png" alt="图 47"></a></p>
+
+    <p><em>You may recall that the <strong>Regions</strong> hierarchy has the levels <strong>Group</strong>, <strong>Country</strong>, and <strong>Region</strong>.</em></p>
+  </li>
+  <li>
+    <p>To format the visual, in the <strong>Visualizations</strong> pane, select the <strong>Format</strong> pane.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image12.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image12.png" alt="图 14"></a></p>
+  </li>
+  <li>
+    <p>In the <strong>Search</strong> box, enter <strong>Stepped</strong>.</p>
+  </li>
+  <li>
+    <p>Set the <strong>Stepped Layout</strong> property to <strong>Off</strong>.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image14.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image14.png" alt="图 49"></a></p>
+  </li>
+  <li>
+    <p>Verify that the matrix visual now has four column headers.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image15.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image15.png" alt="图 50"></a></p>
+
+    <p><em>At Adventure Works, the sales regions are organized into groups, countries, and regions. All countries—except the United States—have just one region, which is named after the country. As the United States is such a large sales territory, it’s divided into five sales regions.</em></p>
+
+    <p><em>You’ll create several measures in this exercise, and then test them by adding them to the matrix visual.</em></p>
+  </li>
+</ol>
+
+<h3 id="task-3-manipulate-filter-context"><strong>Task 3: Manipulate filter context</strong></h3>
+
+<p>In this task you will create several measures with DAX expressions that use the CALCULATE() function to manipulate filter context.</p>
+
+<ol>
+  <li>
+    <p>Add a measure to the <strong>Sales</strong> table, based on the following expression:</p>
+
+    <p><em>For your convenience, all DAX definitions in this lab can be copied from the <strong>D:\PL300\Labs\05-create-dax-calculations-in-power-bi-desktop-advanced\Assets\Snippets.txt</strong> file.</em></p>
+
+    <p><strong>DAX</strong></p>
+
+    <div class="code-header mt-3 mb-0 bg-light d-flex justify-content-between border"><span class="mx-2 text-muted text-capitalize font-weight-light">code</span><button class="m-0 btn btn-code btn-sm btn-light codeBtn rounded-0 border-left text-muted font-weight-light" data-clipboard-target="#codeBlock0" type="button"><i class="fa fa-files-o mr-2" aria-hidden="true"></i>Copy</button></div><pre id="codeBlock0" class="mt-0"><code class="hljs apache"> <span class="hljs-attribute"><span class="hljs-attribute">Sales</span></span> <span class="hljs-literal"><span class="hljs-literal">All</span></span> Region =<font></font>
+<font></font>
+ <span class="hljs-attribute"><span class="hljs-attribute">CALCULATE</span></span>(SUM(Sales[Sales]), REMOVEFILTERS(Region))
+</code></pre>
+
+    <p><em>The CALCULATE() function is a powerful function used to manipulate the filter context. The first argument takes an expression or a measure (a measure is just a named expression). Subsequent arguments allow modifying the filter context.</em></p>
+
+    <p><em>The REMOVEFILTERS() function removes active filters. It can take either no arguments, or a table, a column, or multiple columns as its argument.</em></p>
+
+    <p><em>In this formula, the measure evaluates the sum of the <strong>Sales</strong> column in a modified filter context, which removes any filters applied to the columns of the <strong>Region</strong> table.</em></p>
+  </li>
+  <li>
+    <p>Add the <strong>Sales All Region</strong> measure to the matrix visual.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image16.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image16.png" alt="图 52"></a></p>
+  </li>
+  <li>
+    <p>Notice that the <strong>Sales All Region</strong> measure computes the total of all region sales for each region, country (subtotal) and group (subtotal).</p>
+
+    <p><em>The new measure is yet to deliver a useful result. When the sales for a group, country, or region is divided by this value it will produce a useful ratio known as “percent of grand total”.</em></p>
+  </li>
+  <li>
+    <p>In the <strong>Fields</strong> pane, ensure that the <strong>Sales All Region</strong> measure is selected (when selected, it will have a dark gray background), and then in the formula bar, replace the measure name and formula with the following formula:</p>
+
+    <p><em>Tip: To replace the existing formula, first copy the snippet. Then, click inside the formula bar and press <strong>Ctrl+A</strong> to select all text. Then, press <strong>Ctrl+V</strong> to paste the snippet to overwrite the selected text. Then press <strong>Enter</strong>.</em></p>
+
+    <p><strong>DAX</strong></p>
+
+    <div class="code-header mt-3 mb-0 bg-light d-flex justify-content-between border"><span class="mx-2 text-muted text-capitalize font-weight-light">code</span><button class="m-0 btn btn-code btn-sm btn-light codeBtn rounded-0 border-left text-muted font-weight-light" data-clipboard-target="#codeBlock1" type="button"><i class="fa fa-files-o mr-2" aria-hidden="true"></i>Copy</button></div><pre id="codeBlock1" class="mt-0"><code class="hljs nginx"> <span class="hljs-attribute"><span class="hljs-attribute">Sales</span></span> % All Region =  <font></font>
+ ‎DIVIDE(  <font></font>
+ ‎ SUM(Sales[Sales]),  <font></font>
+ ‎ CALCULATE(  <font></font>
+ ‎ SUM(Sales[Sales]),  <font></font>
+ ‎ REMOVEFILTERS(Region)  <font></font>
+ ‎ )  <font></font>
+ ‎)<font></font>
+</code></pre>
+
+    <p><em>The measure has been renamed to accurately reflect the updated formula. The DIVIDE() function divides the <strong>Sales</strong> measure (not modified by filter context) by the <strong>Sales</strong> measure in a modified context, which removes any filters applied to the <strong>Region</strong> table.</em></p>
+  </li>
+  <li>
+    <p>In the matrix visual, notice that the measure has been renamed and that a different values now appear for each group, country, and region.</p>
+  </li>
+  <li>
+    <p>Format the <strong>Sales % All Region</strong> measure as a percentage with two decimal places.</p>
+  </li>
+  <li>
+    <p>In the matrix visual, review the <strong>Sales % All Region</strong> measure values.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image17.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image17.png" alt="图 53"></a></p>
+  </li>
+  <li>
+    <p>Add another measure to the <strong>Sales</strong> table, based on the following expression, and format as a percentage:</p>
+
+    <p><strong>DAX</strong></p>
+
+    <div class="code-header mt-3 mb-0 bg-light d-flex justify-content-between border"><span class="mx-2 text-muted text-capitalize font-weight-light">code</span><button class="m-0 btn btn-code btn-sm btn-light codeBtn rounded-0 border-left text-muted font-weight-light" data-clipboard-target="#codeBlock2" type="button"><i class="fa fa-files-o mr-2" aria-hidden="true"></i>Copy</button></div><pre id="codeBlock2" class="mt-0"><code class="hljs nginx"> <span class="hljs-attribute"><span class="hljs-attribute">Sales</span></span> % Country =  <font></font>
+ ‎DIVIDE(  <font></font>
+ ‎ SUM(Sales[Sales]),  <font></font>
+ ‎ CALCULATE(  <font></font>
+ ‎ SUM(Sales[Sales]),  <font></font>
+ ‎ REMOVEFILTERS(Region[Region])  <font></font>
+ ‎ )  <font></font>
+ ‎)<font></font>
+</code></pre>
+  </li>
+  <li>
+    <p>Notice that the <strong>Sales % Country</strong> measure formula differs slightly from the <strong>Sales % All Region</strong> measure formula.</p>
+
+    <p><em>The difference is that the denominator modifies the filter context by removing filters on the <strong>Region</strong> column of the <strong>Region</strong> table, not all columns of the <strong>Region</strong> table. It means that any filters applied to the group or country columns are preserved. It’ll achieve a result that represents the sales as a percentage of country.</em></p>
+  </li>
+  <li>
+    <p>Add the <strong>Sales % Country</strong> measure to the matrix visual.</p>
+  </li>
+  <li>
+    <p>Notice that only the United States’ regions produce a value which is not 100%.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image18.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image18.png" alt="图 54"></a></p>
+
+    <p><em>You may recall that only the United States has multiple regions. All other countries comprise a single region, which explains why they are all 100%.</em></p>
+  </li>
+  <li>
+    <p>To improve the readability of this measure in visual, overwrite the <strong>Sales % Country</strong> measure with this improved formula.</p>
+
+    <p><strong>DAX</strong></p>
+
+    <div class="code-header mt-3 mb-0 bg-light d-flex justify-content-between border"><span class="mx-2 text-muted text-capitalize font-weight-light">code</span><button class="m-0 btn btn-code btn-sm btn-light codeBtn rounded-0 border-left text-muted font-weight-light" data-clipboard-target="#codeBlock3" type="button"><i class="fa fa-files-o mr-2" aria-hidden="true"></i>Copy</button></div><pre id="codeBlock3" class="mt-0"><code class="hljs nginx"><span class="hljs-attribute"><span class="hljs-attribute">Sales</span></span> % Country =  <font></font>
+‎IF(  <font></font>
+‎ ISINSCOPE(Region[Region]),  <font></font>
+‎ DIVIDE(  <font></font>
+‎ SUM(Sales[Sales]),  <font></font>
+‎ CALCULATE(  <font></font>
+‎ SUM(Sales[Sales]),  <font></font>
+‎ REMOVEFILTERS(Region[Region])  <font></font>
+‎ )  <font></font>
+‎ )  <font></font>
+‎)<font></font>
+</code></pre>
+
+    <p><em>Embedded within the IF() function, the ISINSCOPE() function is used to test whether the region column is the level in a hierarchy of levels. When true, the DIVIDE() function is evaluated. The absence of a false part means that blank is returned when the region column is not in scope.</em></p>
+  </li>
+  <li>
+    <p>Notice that the <strong>Sales % Country</strong> measure now only returns a value when a region is in scope.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image19.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image19.png" alt="图 55"></a></p>
+  </li>
+  <li>
+    <p>Add another measure to the <strong>Sales</strong> table, based on the following expression, and format as a percentage:</p>
+
+    <p><strong>DAX</strong></p>
+
+    <div class="code-header mt-3 mb-0 bg-light d-flex justify-content-between border"><span class="mx-2 text-muted text-capitalize font-weight-light">code</span><button class="m-0 btn btn-code btn-sm btn-light codeBtn rounded-0 border-left text-muted font-weight-light" data-clipboard-target="#codeBlock4" type="button"><i class="fa fa-files-o mr-2" aria-hidden="true"></i>Copy</button></div><pre id="codeBlock4" class="mt-0"><code class="hljs nginx"><span class="hljs-attribute"><span class="hljs-attribute">Sales</span></span> % Group =  <font></font>
+‎DIVIDE(  <font></font>
+‎ SUM(Sales[Sales]),  <font></font>
+‎ CALCULATE(  <font></font>
+‎ SUM(Sales[Sales]),  <font></font>
+‎ REMOVEFILTERS(  <font></font>
+‎ Region[Region],  <font></font>
+‎ Region[Country]  <font></font>
+‎ )  <font></font>
+‎ )  <font></font>
+‎)<font></font>
+</code></pre>
+
+    <p><em>To achieve sales as a percentage of group, two filters can be applied to effectively remove the filters on two columns.</em></p>
+  </li>
+  <li>
+    <p>Add the <strong>Sales % Group</strong> measure to the matrix visual.</p>
+  </li>
+  <li>
+    <p>To improve the readability of this measure in visual, overwrite the <strong>Sales % Group</strong> measure with this improved formula.</p>
+
+    <p><strong>DAX</strong></p>
+
+    <div class="code-header mt-3 mb-0 bg-light d-flex justify-content-between border"><span class="mx-2 text-muted text-capitalize font-weight-light">code</span><button class="m-0 btn btn-code btn-sm btn-light codeBtn rounded-0 border-left text-muted font-weight-light" data-clipboard-target="#codeBlock5" type="button"><i class="fa fa-files-o mr-2" aria-hidden="true"></i>Copy</button></div><pre id="codeBlock5" class="mt-0"><code class="hljs nginx"><span class="hljs-attribute"><span class="hljs-attribute">Sales</span></span> % Group =  <font></font>
+‎IF(  <font></font>
+‎ ISINSCOPE(Region[Region])  <font></font>
+‎ || ISINSCOPE(Region[Country]),  <font></font>
+‎ DIVIDE(  <font></font>
+‎ SUM(Sales[Sales]),  <font></font>
+‎ CALCULATE(  <font></font>
+‎ SUM(Sales[Sales]),  <font></font>
+‎ REMOVEFILTERS(  <font></font>
+‎ Region[Region],  <font></font>
+‎ Region[Country]  <font></font>
+‎ )  <font></font>
+‎ )  <font></font>
+‎ )  <font></font>
+‎)<font></font>
+</code></pre>
+  </li>
+  <li>
+    <p>Notice that the <strong>Sales % Group</strong> measure now only returns a value when a region or country is in scope.</p>
+  </li>
+  <li>
+    <p>In Model view, place the three new measures into a display folder named <strong>Ratios</strong>.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image20.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image20.png" alt="图 56"></a></p>
+  </li>
+  <li>
+    <p>Save the Power BI Desktop file.</p>
+
+    <p><em>The measures added to the <strong>Sales</strong> table have modified filter context to achieve hierarchical navigation. Notice that the pattern to achieve the calculation of a subtotal requires removing some columns from the filter context, and to arrive at a grand total, all columns must be removed.</em></p>
+  </li>
+</ol>
+
+<h2 id="exercise-2-work-with-time-intelligence"><strong>Exercise 2: Work with Time Intelligence</strong></h2>
+
+<p>In this exercise you will create a sales year-to-date (YTD) measure and sales year-over-year (YoY) growth measure.</p>
+
+<h3 id="task-1-create-a-ytd-measure"><strong>Task 1: Create a YTD measure</strong></h3>
+
+<p>In this task you will create a sales YTD measure.</p>
+
+<ol>
+  <li>
+    <p>In Report view, on <strong>Page 2</strong>, notice the matrix visual that displays various measures with years and months grouped on the rows.</p>
+  </li>
+  <li>
+    <p>Add a measure to the <strong>Sales</strong> table, based on the following expression, and formatted to zero decimal places:</p>
+
+    <p><strong>DAX</strong></p>
+
+    <div class="code-header mt-3 mb-0 bg-light d-flex justify-content-between border"><span class="mx-2 text-muted text-capitalize font-weight-light">code</span><button class="m-0 btn btn-code btn-sm btn-light codeBtn rounded-0 border-left text-muted font-weight-light" data-clipboard-target="#codeBlock6" type="button"><i class="fa fa-files-o mr-2" aria-hidden="true"></i>Copy</button></div><pre id="codeBlock6" class="mt-0"><code class="hljs javascript"> Sales YTD =  <font></font>
+ ‎TOTALYTD(SUM(Sales[Sales]), <span class="hljs-string"><span class="hljs-string">'Date'</span></span>[<span class="hljs-built_in"><span class="hljs-built_in">Date</span></span>], <span class="hljs-string"><span class="hljs-string">"6-30"</span></span>)
+</code></pre>
+
+    <p><em>The TOTALYTD() function evaluates an expression—in this case the sum of the <strong>Sales</strong> column—over a given date column. The date column must belong to a date table marked as a date table, as was done in the <strong>Create DAX Calculations in Power BI Desktop, Part 1</strong> lab.</em></p>
+
+    <p><em>The function can also take a third optional argument representing the last date of a year. The absence of this date means that December 31 is the last date of the year. For Adventure Works, June in the last month of their year, and so “6-30” is used.</em></p>
+  </li>
+  <li>
+    <p>Add the <strong>Sales</strong> field and the <strong>Sales YTD</strong> measure to the matrix visual.</p>
+  </li>
+  <li>
+    <p>Notice the accumulation of sales values within the year.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image21.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image21.png" alt="图 59"></a></p>
+
+    <p><em>The TOTALYTD() function performs filter manipulation, specifically time filter manipulation. For example, to compute YTD sales for September 2017 (the third month of the fiscal year), all filters on the <strong>Date</strong> table are removed and replaced with a new filter of dates commencing at the beginning of the year (July 1, 2017) and extending through to the last date of the in-context date period (September 30, 2017).</em></p>
+
+    <p><em>Note that many Time Intelligence functions are available in DAX to support common time filter manipulations.</em></p>
+  </li>
+</ol>
+
+<h3 id="task-2-create-a-yoy-growth-measure"><strong>Task 2: Create a YoY growth measure</strong></h3>
+
+<p>In this task you will create a sales YoY growth measure.</p>
+
+<ol>
+  <li>
+    <p>Add an additional measure to the <strong>Sales</strong> table, based on the following expression:</p>
+
+    <p><strong>DAX</strong></p>
+
+    <div class="code-header mt-3 mb-0 bg-light d-flex justify-content-between border"><span class="mx-2 text-muted text-capitalize font-weight-light">code</span><button class="m-0 btn btn-code btn-sm btn-light codeBtn rounded-0 border-left text-muted font-weight-light" data-clipboard-target="#codeBlock7" type="button"><i class="fa fa-files-o mr-2" aria-hidden="true"></i>Copy</button></div><pre id="codeBlock7" class="mt-0"><code class="hljs php"> Sales YoY Growth =  <font></font>
+ ‎<span class="hljs-keyword"><span class="hljs-keyword">VAR</span></span> SalesPriorYear =  <font></font>
+ ‎ CALCULATE(  <font></font>
+ ‎ SUM(Sales[Sales]),  <font></font>
+ ‎ PARALLELPERIOD(  <font></font>
+ ‎ <span class="hljs-string"><span class="hljs-string">'Date'</span></span>[Date],  <font></font>
+ ‎ <span class="hljs-number"><span class="hljs-number">-12</span></span>,  <font></font>
+ ‎ MONTH  <font></font>
+ ‎ )  <font></font>
+ ‎ )  <font></font>
+ ‎<span class="hljs-keyword"><span class="hljs-keyword">RETURN</span></span>  <font></font>
+ ‎ SalesPriorYear<font></font>
+</code></pre>
+
+    <p><em>The <strong>Sales YoY Growth</strong> measure formula declares a variable. Variables can be useful for simplifying the formula logic, and more efficient when an expression needs to be evaluated multiple times within the formula (which will be the case for the YoY growth logic). Variables are declared by a unique name, and the measure expression must then be output after the <strong>RETURN</strong> keyword.</em></p>
+
+    <p><em>The <strong>SalesPriorYear</strong> variable is assigned an expression which calculates the sum of the <strong>Sales</strong> column in a modified context that uses the PARALLELPERIOD() function to shift 12 months back from each date in filter context.</em></p>
+  </li>
+  <li>
+    <p>Add the <strong>Sales YoY Growth</strong> measure to the matrix visual.</p>
+  </li>
+  <li>
+    <p>Notice that the new measure returns BLANK for the first 12 months (because there were no sales recorded before fiscal year 2017).</p>
+  </li>
+  <li>
+    <p>Notice that the <strong>Sales YoY Growth</strong> measure value for <strong>2018 Jul</strong> is the <strong>Sales</strong> value for <strong>2017 Jul</strong>.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image22.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image22.png" alt="图 61"></a></p>
+
+    <p><em>Now that the “difficult part” of the formula has been tested, you can overwrite the measure with the final formula which computes the growth result.</em></p>
+  </li>
+  <li>
+    <p>To complete the measure, overwrite the <strong>Sales YoY Growth</strong> measure with this formula, formatting it as a percentage with two decimal places:</p>
+
+    <p><strong>DAX</strong></p>
+
+    <div class="code-header mt-3 mb-0 bg-light d-flex justify-content-between border"><span class="mx-2 text-muted text-capitalize font-weight-light">code</span><button class="m-0 btn btn-code btn-sm btn-light codeBtn rounded-0 border-left text-muted font-weight-light" data-clipboard-target="#codeBlock8" type="button"><i class="fa fa-files-o mr-2" aria-hidden="true"></i>Copy</button></div><pre id="codeBlock8" class="mt-0"><code class="hljs php"> Sales YoY Growth =  <font></font>
+ ‎<span class="hljs-keyword"><span class="hljs-keyword">VAR</span></span> SalesPriorYear =  <font></font>
+ ‎ CALCULATE(  <font></font>
+ ‎ SUM(Sales[Sales]),  <font></font>
+ ‎ PARALLELPERIOD(  <font></font>
+ ‎ <span class="hljs-string"><span class="hljs-string">'Date'</span></span>[Date],  <font></font>
+ ‎ <span class="hljs-number"><span class="hljs-number">-12</span></span>,  <font></font>
+ ‎ MONTH  <font></font>
+ ‎ )  <font></font>
+ ‎ )  <font></font>
+ ‎<span class="hljs-keyword"><span class="hljs-keyword">RETURN</span></span>  <font></font>
+ ‎ DIVIDE(  <font></font>
+ ‎ (SUM(Sales[Sales]) - SalesPriorYear),  <font></font>
+ ‎ SalesPriorYear  <font></font>
+ ‎ )<font></font>
+</code></pre>
+  </li>
+  <li>
+    <p>In the formula, in the <strong>RETURN</strong> clause, notice that the variable is referenced twice.</p>
+  </li>
+  <li>
+    <p>Verify that the YoY growth for <strong>2018 Jul</strong> is <strong>392.83%</strong>.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image23.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image23.png" alt="图 62"></a></p>
+
+    <p><em>It means that July 2018 sales ($2,411,559) represents a nearly 400% (almost 4x) improvement over the sales achieved at the same time of the prior year ($489,328).</em></p>
+  </li>
+  <li>
+    <p>In Model view, place the two new measures into a display folder named <strong>Time Intelligence</strong>.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image24.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image24.png" alt="图 63"></a></p>
+  </li>
+</ol>
+
+<h3 id="task-3-finish-up"><strong>Task 3: Finish up</strong></h3>
+
+<p>In this task you will complete the lab.</p>
+
+<ol>
+  <li>
+    <p>To clean up the solution ready for report development, at the bottom-left, right-click the <strong>Page 2</strong> tab, and then select <strong>Delete</strong> page.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image25.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image25.png" alt="图 17"></a></p>
+  </li>
+  <li>
+    <p>When prompted to delete the page, click <strong>Delete</strong>.</p>
+
+    <p><a href="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image26.png" target="_blank"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/06-create-dax-calculations-in-power-bi-desktop-advanced_image26.png" alt="图 18"></a></p>
+  </li>
+  <li>
+    <p>Delete <strong>Page 3</strong> also.</p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在剩余页面上，要清除页面，请选择表格视觉对象，然后按</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Delete</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">键。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">保存 Power BI Desktop 文件。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果你打算开始下一个实验室，请将 Power BI Desktop 保持打开状态。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">你将根据在 Power BI Desktop 中设计报表，第 1 部分</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室</font><font style="vertical-align: inherit;">中的数据模型创建报表。</font></font></em></p>
+  </li>
+</ol>
+
+            </article>
+        </main>
+    </div>
+    <footer class="fixed-bottom d-print-none">
+        <nav class="navbar navbar-light bg-light d-flex justify-content-around">
+            <span class="navbar-text">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <a href="https://github.com/MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst" target="_blank" class="ml-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                    MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst
+                </font></font></a>
+            </span>
+        </nav>
+    </footer>
+    <script src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/clipboard.min.js"></script>
+    <script src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/highlight.min.js"></script>
+    <script src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/script.js"></script>
+
+
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./05-create-dax-calculations-in-power-bi-desktop-advanced_files/translate_24dp.png" width="20" height="20" alt="Google Translate"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div style="position: static !important;"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div></body></html>
