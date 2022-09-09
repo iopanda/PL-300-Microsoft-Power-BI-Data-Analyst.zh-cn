@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<!-- saved from url=(0137)https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/09-perform-data-analysis-in-power-bi-desktop.html -->
+<html lang="zh-CN" class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>PL-300-Microsoft-Power-BI-数据分析器</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="./09-perform-data-analysis-in-power-bi-desktop_files/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="./09-perform-data-analysis-in-power-bi-desktop_files/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="./09-perform-data-analysis-in-power-bi-desktop_files/vs.min.css">
+        <script src="./09-perform-data-analysis-in-power-bi-desktop_files/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <link rel="stylesheet" href="./09-perform-data-analysis-in-power-bi-desktop_files/style.css">
+    <link type="text/css" rel="stylesheet" charset="UTF-8" href="./09-perform-data-analysis-in-power-bi-desktop_files/translateelement.css"></head>
+    <body data-spy="scroll" data-target="#linksMenu">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <div class="container d-flex justify-content-between">
+            <a class="my-1 title text-white" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst">
+                <img src="./09-perform-data-analysis-in-power-bi-desktop_files/Microsoft-logo_rgb_c-wht.png" alt="微软徽标" style="width:138px;height:61px;">
+            </a>
+            <span class="my-1 title text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">微软官方课件</font></font></span>
+            <a href="https://github.com/MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst" target="_blank" class="btn btn-sm btn-outline-secondary text-light">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <span class="ml-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GitHub</font></font></span>
+            </a>
+        </div>
+        <!--
+        <div class="container d-flex justify-content-between">
+            <a class="my-1 title text-azure text-uppercase" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst">
+                PL-300-Microsoft-Power-BI-Data-Analyst
+            </a>
+            <a href="https://github.com/MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst" target="_blank" class="btn btn-sm btn-outline-secondary text-light">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <span class="ml-2">GitHub</span>
+            </a>
+        </div>
+        -->
+    </nav>
+    <div class="container">
+        <main class="row extra-padding">
+            <aside class="col-sm-2">       
+                <nav id="linksMenu" class="toc sticky-top">
+                    <ul class="nav navbar-nav flex-column">
+                    <li class="nav-item"><a class="nav-link" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/09-perform-data-analysis-in-power-bi-desktop.html#exercise-1-create-the-report"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 1：创建报告</font></font></a></li><li class="nav-item"><a class="nav-link" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/09-perform-data-analysis-in-power-bi-desktop.html#exercise-2-create-a-scatter-chart"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 2：创建散点图</font></font></a></li><li class="nav-item"><a class="nav-link" href="https://microsoftlearning.github.io/PL-300-Microsoft-Power-BI-Data-Analyst/Instructions/09-perform-data-analysis-in-power-bi-desktop.html#exercise-3-create-a-forecast"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 3：创建预测</font></font></a></li></ul>
+                </nav>         
+            </aside>
+            <hr class="">
+            <article class="col-sm-10 mb-5">
+                <h1 id="perform-data-analysis-in-power-bi-desktop"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中执行数据分析</font></font></strong></h1>
+
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">完成实验的预计时间为 45 分钟</font></font></strong></p>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本实验中，您将创建</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售探索</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">报告。</font></font></p>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本实验中，您将学习如何：</font></font></p>
+
+<ul>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建动画散点图</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用视觉来预测值</font></font></p>
+  </li>
+</ul>
+
+<h3 id="lab-story"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室故事</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该实验室是一系列实验室中的众多实验室之一，这些实验室被设计成一个完整的故事，从数据准备到发布为报告和仪表板。</font><font style="vertical-align: inherit;">您可以按任何顺序完成实验。</font><font style="vertical-align: inherit;">但是，如果您打算通过多个实验室工作，我们建议您按以下顺序进行：</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中准备数据</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中加载数据</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Power BI Desktop 中的模型数据</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 1 部分</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中创建 DAX 计算，第 2 部分</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中设计报表，第 1 部分</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中设计报表，第 2 部分</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建 Power BI 仪表板</font></font></p>
+  </li>
+  <li>
+    <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Power BI Desktop 中执行数据分析</font></font></strong></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实施行级安全</font></font></p>
+  </li>
+</ol>
+
+<h2 id="exercise-1-create-the-report"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 1：创建报告</font></font></strong></h2>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本练习中，您将创建</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售探索</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">报告。</font></font></p>
+
+<h3 id="task-1-get-started--sign-in"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 1：开始 - 登录</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，你将通过登录 Power BI 设置实验室环境。</font></font></p>
+
+<p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重要提示：如果你已在之前的实验室中登录 Power BI，请继续下一个任务。</font></font></em></p>
+
+<ol>
+  <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要打开 Microsoft Edge，请在任务栏上单击 Microsoft Edge 程序快捷方式。</font></font></li>
+</ol>
+
+ 	<a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image1.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image1.png" alt="图 7"></a>
+
+<ol>
+  <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Microsoft Edge 浏览器窗口中，导航到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://powerbi.microsoft.com</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+</ol>
+
+ 	<em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提示：您还可以使用 Microsoft Edge 收藏夹栏中的 Power BI 服务收藏夹。</font></font></em>
+
+<ol>
+  <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">登录</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">（位于右上角）。</font></font></li>
+</ol>
+
+ 	<a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image2.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image2.png" alt="图5"></a>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">输入提供给您的帐户详细信息。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果提示更新密码，请重新输入提供的密码，然后输入并确认新密码。</font></font></p>
+  </li>
+</ol>
+
+ 	<em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重要提示：请务必记录您的新密码。</font></font></em>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">完成登录过程。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果 Microsoft Edge 提示保持登录状态，请单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Microsoft Edge 浏览器窗口的 Power BI 服务的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">导航</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，展开</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我的工作区</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+</ol>
+
+ 	<a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image3.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image3.png" alt="图4"></a>
+
+<ol>
+  <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">让 Microsoft Edge 浏览器窗口保持打开状态。</font></font></li>
+</ol>
+
+<h3 id="task-2-get-started--create-a-dataset"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 2：开始 - 创建数据集</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将通过创建数据集来设置实验室环境。</font></font></p>
+
+<p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重要提示：如果你已经在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建 Power BI 仪表板</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室中发布了数据集，请继续下一个任务。</font></font></em></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 Microsoft Edge 浏览器窗口的 Power BI 服务中，在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">导航</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格的底部，单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">获取数据</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image4.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image4.png" alt="图 8"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">磁贴中，单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">获取</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image5.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image5.png" alt="图 10"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">本地文件</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">磁贴。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image6.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image6.png" alt="图 11"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">打开</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗口中，导航到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">D:\PL300\Labs\08-create-power-bi-dashboard\Solution</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件夹。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales Analysis.pbix</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件，然后单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Open</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果提示替换数据集，请单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">替换它</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+  </li>
+</ol>
+
+<h3 id="task-3-create-the-report"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 3：创建报告</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将创建</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售探索</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">报告。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">若要打开 Power BI Desktop，请在任务栏上单击 Microsoft Power BI Desktop 快捷方式。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重要提示：如果已打开 Power BI Desktop（来自以前的实验室），请关闭该实例。</font></font></em></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image7.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image7.png" alt="图 14"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要关闭入门窗口，请单击窗口左上角的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image8.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image8.png" alt="图 13"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果 Power BI Desktop 未登录 Power BI 服务，请单击右上角的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">登录</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image9.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image9.png" alt="图 16"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用用于登录 Power BI 服务的同一帐户完成登录过程。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要保存文件，请单击“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”功能区选项卡以打开后台视图。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">保存</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image10.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image10.png" alt="图 12"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">另存为</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗口中，导航到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">D:\PL300\MySolution</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件夹。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文件名</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">框中，输入</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales Exploration</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">并单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">保存</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image11.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image11.png" alt="图片1"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要创建与</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售分析</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">数据集的实时连接，请在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">主页”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">功能区选项卡上的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">数据</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”组内，单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">“Power BI 数据集</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">” 。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image12.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image12.png" alt="图 15"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Select a Dataset to Create a Report</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗口中，选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sales Analysis</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">数据集。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image13.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image13.png" alt="图 17"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">保存 Power BI Desktop 文件。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您现在将创建两个报表页面，并且在每个页面上您将使用不同的视觉对象来分析和探索数据。</font></font></em></p>
+  </li>
+</ol>
+
+<h2 id="exercise-2-create-a-scatter-chart"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 2：创建散点图</font></font></strong></h2>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本练习中，您将创建一个可以设置动画的散点图。</font></font></p>
+
+<h3 id="task-1-create-an-animated-scatter-chart"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 1：创建动画散点图</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将创建一个可以设置动画的散点图。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将第 1 页</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重命名</font><font style="vertical-align: inherit;">为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Scatter Chart</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image14.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image14.png" alt="图 67"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">散点图</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">视觉对象添加到报表页面，然后对其进行定位和调整大小，使其填满整个页面。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image15.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image15.png" alt="图 18"></a></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image16.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image16.png" alt="图 75"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将以下字段添加到可视井/区域：</font></font></p>
+
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">实验室使用速记符号来引用字段。</font><font style="vertical-align: inherit;">它看起来像这样：</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">经销商</font></font></strong> <strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">| </font></font></strong> <strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">业务类型</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">在此示例中，</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Reseller</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是表名称，</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Business Type</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">是字段名称。</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X 轴：</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售 | </font><font style="vertical-align: inherit;">销售量</font></font></strong></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Y 轴：</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售 | </font><font style="vertical-align: inherit;">利润率</font></font></strong></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">图例：</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">经销商 | </font><font style="vertical-align: inherit;">业务类型</font></font></strong></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">尺寸:</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售 | </font><font style="vertical-align: inherit;">数量</font></font></strong></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">播放轴：</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日期 | </font><font style="vertical-align: inherit;">四分之一</font></font></strong></p>
+      </li>
+    </ul>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image17.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image17.png" alt="图 39"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将字段添加到Play Axis</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">井/区域</font><font style="vertical-align: inherit;">时，可以为图表设置动画。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">过滤器</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，添加</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">产品 | </font></font></strong><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">此页面上的过滤器</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">井/区域的</font><strong><font style="vertical-align: inherit;">类别</font></strong><font style="vertical-align: inherit;">字段。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在过滤卡中，按</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bikes</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">过滤。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image18.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image18.png" alt="图 40"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要为图表设置动画，请单击左下角的</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Play</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image19.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image19.png" alt="图 41"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">观看从FY2018 Q1</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">到</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">FY2020 Q4</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">的整个动画周期</font><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">散点图允许同时理解度量值：在这种情况下，订单数量、销售收入和利润率。</font></font></em></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">每个气泡代表一个经销商业务类型。</font><font style="vertical-align: inherit;">气泡大小的变化反映了订单数量的增加或减少。</font><font style="vertical-align: inherit;">水平移动代表销售收入的增加/减少，垂直移动代表盈利能力的增加/减少。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">当动画停止时，单击其中一个气泡以显示其随时间的跟踪。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将光标悬停在任何气泡上以显示一个工具提示，该工具提示描述了该时间点经销商类型的度量值。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Filters</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，仅按</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Clothing</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">进行过滤，并注意它会产生非常不同的结果。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">保存 Power BI Desktop 文件。</font></font></p>
+  </li>
+</ol>
+
+<h2 id="exercise-3-create-a-forecast"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">练习 3：创建预测</font></font></strong></h2>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在本练习中，您将创建预测以确定未来可能的销售收入。</font></font></p>
+
+<h3 id="task-1-create-a-forecast"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务 1：创建预测</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将创建预测以确定未来可能的销售收入。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">添加一个新页面，然后将该页面重命名为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Forecast</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image20.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image20.png" alt="图 66"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">折线图</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">视觉对象添加到报表页面，然后定位并调整其大小以填充整个页面。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image21.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image21.png" alt="图 19"></a></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image22.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image22.png" alt="图 74"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将以下字段添加到可视井/区域：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X 轴：</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日期 | </font><font style="vertical-align: inherit;">日期</font></font></strong></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Y 轴：</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">销售额 | </font><font style="vertical-align: inherit;">销售量</font></font></strong></p>
+      </li>
+    </ul>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image23.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image23.png" alt="图 46"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">过滤器</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，添加</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日期 | </font></font></strong><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">此页面上的过滤器</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">井/区域的</font><strong><font style="vertical-align: inherit;">年份</font></strong><font style="vertical-align: inherit;">字段。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在过滤卡中，按两年过滤：</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">FY2019</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">FY2020</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image24.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image24.png" alt="图 47"></a></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在时间线上进行预测时，您将需要至少两个周期（年）的数据才能产生准确而稳定的预测。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">还添加</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">产品 | </font><font style="vertical-align: inherit;">类别</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">到此页面上的过滤器</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">井/区域，并按</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bikes</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">过滤。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image25.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image25.png" alt="图 48"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要添加预测，请在“可视化</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗格下方</font><font style="vertical-align: inherit;">选择“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分析</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”窗格。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image26.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image26.png" alt="图 20"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">展开</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">预测</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">部分。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">预测</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”部分不可用，可能是因为未正确配置视觉对象。</font><font style="vertical-align: inherit;">预测仅在满足两个条件时可用：轴有一个日期类型的字段，并且只有一个值字段。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">预测</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”选项设置为</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">“开”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image28.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image28.png" alt="图 51"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">配置以下预测属性：</font></font></p>
+
+    <ul>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单位：月</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">预测时长：1个月</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">季节性：365</font></font></p>
+      </li>
+      <li>
+        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">置信区间：80%</font></font></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单击</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">应用</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image29.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image29.png" alt="图 52"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在线条视觉中，请注意预测已超出历史数据一个月。</font></font></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">灰色区域代表置信度。</font><font style="vertical-align: inherit;">置信度越大，预测就越不稳定，因此也就越不准确。</font></font></em></p>
+
+    <p><em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">当您知道周期的长度时，在这种情况下为年度，您应该输入季节性点。</font><font style="vertical-align: inherit;">有时可能是每周 (7) 或每月 (30)。</font></font></em></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Filters</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">窗格中，仅按</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Clothing</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">进行过滤，并注意它会产生不同的结果。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">保存 Power BI Desktop 文件。</font></font></p>
+  </li>
+</ol>
+
+<h3 id="task-2-finish-up"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任务2：完成</font></font></strong></h3>
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在此任务中，您将完成实验。</font></font></p>
+
+<ol>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">散点图</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">页面。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">保存 Power BI Desktop 文件。</font></font></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要将文件发布到“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我的工作区</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”，请在“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">主页”</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">功能区选项卡上的“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">共享</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">”组中，单击“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">发布</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">” ，然后单击“</font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">发布”。</font></font></p>
+
+    <p><a href="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image46.png" target="_blank"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/10-perform-data-analysis-in-power-bi-desktop_image46.png" alt="图 23"></a></p>
+  </li>
+  <li>
+    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">关闭 Power BI Desktop。</font></font></p>
+  </li>
+</ol>
+
+            </article>
+        </main>
+    </div>
+    <footer class="fixed-bottom d-print-none">
+        <nav class="navbar navbar-light bg-light d-flex justify-content-around">
+            <span class="navbar-text">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <a href="https://github.com/MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst" target="_blank" class="ml-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                    MicrosoftLearning/PL-300-Microsoft-Power-BI-Data-Analyst
+                </font></font></a>
+            </span>
+        </nav>
+    </footer>
+    <script src="./09-perform-data-analysis-in-power-bi-desktop_files/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="./09-perform-data-analysis-in-power-bi-desktop_files/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="./09-perform-data-analysis-in-power-bi-desktop_files/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="./09-perform-data-analysis-in-power-bi-desktop_files/clipboard.min.js"></script>
+    <script src="./09-perform-data-analysis-in-power-bi-desktop_files/highlight.min.js"></script>
+    <script src="./09-perform-data-analysis-in-power-bi-desktop_files/script.js"></script>
+
+
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./09-perform-data-analysis-in-power-bi-desktop_files/translate_24dp.png" width="20" height="20" alt="Google Translate"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div style="position: static !important;"></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div></body></html>
